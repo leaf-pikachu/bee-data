@@ -28,7 +28,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+
+              "src/vendor/styles/bootstrap.scss",
+              "src/vendor/styles/appwork.scss",
+              "src/vendor/styles/theme-corporate.scss",
+              "src/vendor/styles/colors.scss",
+              "src/vendor/styles/uikit.scss"
             ],
             "scripts": []
           },
@@ -123,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bee-data"
+    }
+  },
+  "defaultProject": "bee-data",
+  "cli": {
+    "analytics": "3f31d263-94cd-4973-a58c-43f3670e9252"
+  }
 }

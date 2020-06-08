@@ -1,0 +1,9 @@
+@import '~ag-grid-community/src/styles/ag-grid';
+@import '~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin';
+@mixin ag-grid-theme($background) {
+  .ag-theme-alpine {
+    @include ag-theme-alpine((
+      odd-row-background-color: $background
+    ));
+  }
+}

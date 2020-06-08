@@ -1,0 +1,10 @@
+{
+  "/data/*": {
+    "target": "http://mmall.bytenote.cn/",
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite":{
+      "^/data":""
+    }
+  }
+}
