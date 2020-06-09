@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  beeframework: {
+    wsapi: 'ws://localhost:8060/beeframework/websocket',
+    api: 'beeframework',
+    db: 'BEE_FRAMEWORK_DATABASE'
+  }
 };
 
 /*
