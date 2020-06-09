@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import {BeeService} from '@bee/core/bee.service';
+import {BeeService} from '@bee/core/service/bee.service';
 
 @Component({
   selector: 'app-layout-footer',

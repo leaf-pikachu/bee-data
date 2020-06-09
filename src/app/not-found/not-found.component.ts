@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BeeService } from '../core/bee.service';
+import { BeeService } from '../core/service/bee.service';
 import { BeeThemeService } from '@bee/core/theme/bee-theme.service';
 
 @Component({

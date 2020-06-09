@@ -1,10 +1,28 @@
 <h4 class="font-weight-bold py-3 mb-4">
   <span class="text-muted font-weight-light">Bee Framework/</span> Ngx-Datatable
 </h4>
-
-<ngx-datatable>
-
-</ngx-datatable>
+<hr class="container-m-nx border-light mt-0 mb-4">
+<div class="card">
+  <h6 class="card-header">
+    Within card
+  </h6>
+  <div class="card-ngx-datatable table-responsive">
+    <ngx-datatable #table style="min-width: 550px"
+                   [rows]="rows"
+                   [loadingIndicator]="loadingIndicator"
+                   [columnMode]="'force'"
+                   [headerHeight]="43"
+                   [footerHeight]="'auto'"
+                   [rowHeight]="'auto'"
+                   [reorderable]="true"
+                   [selectionType]="'cell'"
+                   [limit]="10">
+      <ngx-datatable-column name="Name"></ngx-datatable-column>
+      <ngx-datatable-column name="Gender"></ngx-datatable-column>
+      <ngx-datatable-column name="Company"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
 
 
 

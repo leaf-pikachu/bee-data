@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
-import { BeeService } from '@bee/core/bee.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
+import { BeeService } from '@bee/core/service/bee.service';
 import { LayoutService } from '@bee/layout/layout.service';
 
 @Component({
@@ -9,6 +11,9 @@ import { LayoutService } from '@bee/layout/layout.service';
   styles: [':host { display: block; }']
 })
 export class AppComponent {
+// Wires up BlockUI instance
+  @BlockUI() blockUI: NgBlockUI;
+
   constructor(private router: Router, private appService: BeeService, private layoutService: LayoutService) {
     // Subscribe to router events to handle page transition
     this.router.events.subscribe(this.navigationInterceptor.bind(this));

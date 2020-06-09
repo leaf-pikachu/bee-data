@@ -1,5 +1,5 @@
 import { Component, Input, HostBinding } from '@angular/core';
-import { BeeService } from '@bee/core/bee.service';
+import { BeeService } from '@bee/core/service/bee.service';
 import { LayoutService } from '@bee/layout/layout.service';
 
 @Component({

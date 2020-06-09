@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from '@bee/layout/layout.service';
-import { BeeService } from '@bee/core/bee.service';
+import { BeeService } from '@bee/core/service/bee.service';
 
 @Component({
   selector: 'app-layout-sidenav',
