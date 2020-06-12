@@ -1,7 +1,6 @@
 import { AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { beeValueChanges } from '@bee/config/watch/value-changes';
-import {Subscription} from 'rxjs/src/internal/Subscription';
 
 /**
  * BeeFramework FormControl 先关功能的预定

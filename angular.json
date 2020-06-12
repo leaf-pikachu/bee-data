@@ -29,7 +29,6 @@
             ],
             "styles": [
               "src/styles.scss",
-
               "src/vendor/styles/bootstrap.scss",
               "src/vendor/styles/appwork.scss",
               "src/vendor/styles/theme-corporate.scss",

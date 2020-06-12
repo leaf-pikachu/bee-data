@@ -20,10 +20,9 @@ export class Page2Component {
     this.fetch((data) => {
       // cache our list
       this.temp = [...data];
-
       // push our inital complete list
       this.rows = data;
-
+      // layer
       setTimeout(() => { this.loadingIndicator = false; }, 1500);
     });
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BeeHttpService} from '@bee/core/service/bee-http.service';
-import {BeeStorageService} from '@bee/core/service/bee-storage.service';
+import { BeeHttpService } from '@bee/core/service/bee-http.service';
+import { BeeStorageService } from '@bee/core/service/bee-storage.service';
 
 @Injectable({
   providedIn: 'root'

@@ -4,6 +4,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { BeeService } from '@bee/core/service/bee.service';
 import { LayoutService } from '@bee/layout/layout.service';
+import {LayuiModule} from '@bee/libs/layui/layui.module';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent {
   constructor(private router: Router, private appService: BeeService, private layoutService: LayoutService) {
     // Subscribe to router events to handle page transition
     this.router.events.subscribe(this.navigationInterceptor.bind(this));
-
+    LayuiModule.forRoot();
     // Disable animations and transitions in IE10 to increase performance
     if (typeof document['documentMode'] === 'number' && document['documentMode'] < 11) {
       const style = document.createElement('style');

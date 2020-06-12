@@ -1,0 +1,51 @@
+<!--<form class="card md-4" #aeForm="ngForm" [formGroup]="aeFG" (ngSubmit)="aedSave(aeForm)" novalidate>-->
+<!--  <h5 class="card-header">-->
+<!--    系统模块{{operationType.desc}}-->
+<!--  </h5>-->
+<!--  <div class="card-body">-->
+<!--    <div class="form-row">-->
+<!--      <bee-input [beeForm]="aeForm" [beeRFC]="aeFG.controls.numberOrder"-->
+<!--                 labelTitle="排序号" name="numberOrder" class="form-group col-md-6"></bee-input>-->
+<!--      <bee-select [beeForm]="aeForm" [beeRFC]="aeFG.controls.systemRowId"-->
+<!--                  labelTitle="所属系统" [items]="systems" bindLabel="chName" bindValue="rowId" class="form-group col-md-4"></bee-select>-->
+<!--    </div>-->
+<!--    <div class="form-row">-->
+<!--      <bee-select [beeForm]="aeForm" [beeRFC]="aeFG.controls.moduleLevel"-->
+<!--                  labelTitle="模块级别" [items]="moduleLevels" class="form-group col-md-6"></bee-select>-->
+<!--      <bee-select class="form-group col-md-4" *ngIf="parentModuleShow" [beeForm]="aeForm" [beeRFC]="aeFG.controls.parentModuleRowId"-->
+<!--                  labelTitle="上级模块" [items]="parentModules" bindLabel="moduleChName" bindValue="rowId" ></bee-select>-->
+<!--    </div>-->
+<!--    <div class="form-row">-->
+<!--      <bee-input [beeForm]="aeForm" [beeRFC]="aeFG.controls.moduleEnName"-->
+<!--                 labelTitle="英文名" name="moduleEnName" class="form-group col-md-6"></bee-input>-->
+<!--      <bee-input [beeForm]="aeForm" [beeRFC]="aeFG.controls.moduleChName"-->
+<!--                 labelTitle="中文名" name="moduleChName" class="form-group col-md-6"></bee-input>-->
+<!--    </div>-->
+<!--    <div class="form-row">-->
+<!--      <bee-input [beeForm]="aeForm" [beeRFC]="aeFG.controls.moduleURI"-->
+<!--                 labelTitle="模块URI" name="moduleURI" class="form-group col-md-4"></bee-input>-->
+<!--      <bee-select [beeForm]="aeForm" [beeRFC]="aeFG.controls.listPageType"-->
+<!--                  labelTitle="Grid页面显示方式" [items]="showPageTypes" bindLabel="chName" bindValue="enName"  class="form-group col-md-4"></bee-select>-->
+<!--      <bee-select [beeForm]="aeForm" [beeRFC]="aeFG.controls.editPageType"-->
+<!--                  labelTitle="AED页面显示方式" [items]="showPageTypes" bindLabel="chName" bindValue="enName" class="form-group col-md-4"></bee-select>-->
+<!--    </div>-->
+<!--    <div class="form-row">-->
+<!--      <bee-switch-icon [beeRFC]="aeFG.controls.mainModuleSwitch" labelTitle="主模块" class="form-group col-md-6"></bee-switch-icon>-->
+<!--      <bee-switch-icon [beeRFC]="aeFG.controls.moduleShowSwitch" labelTitle="菜单模块" class="form-group col-md-6"></bee-switch-icon>-->
+<!--      <bee-switch-icon [beeRFC]="aeFG.controls.toolbarShowSwitch" labelTitle="工具栏" class="form-group col-md-6"></bee-switch-icon>-->
+<!--      <bee-switch-icon [beeRFC]="aeFG.controls.operationShowSwitch" labelTitle="基本操作" class="form-group col-md-6"></bee-switch-icon>-->
+<!--      <bee-switch-icon [beeRFC]="aeFG.controls.otherOperationShowSwitch" labelTitle="其他操作" class="form-group col-md-6"></bee-switch-icon>-->
+<!--    </div>-->
+<!--    <div class="form-row">-->
+
+<!--    </div>-->
+
+<!--    <bee-textarea [beeForm]="aeForm" [beeRFC]="aeFG.controls.moduleDesc"-->
+<!--                  labelTitle="模块描述" name="roleDesc" rows="7" class="form-group"></bee-textarea>-->
+<!--  </div>-->
+<!--  <div class="card-footer">-->
+<!--    <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i>保存</button>-->
+<!--    <button type="reset"  class="btn btn-warning" (click)="aedReset(aeForm)">重置</button>-->
+<!--    <button type="button" class="btn btn-default" (click)="aedBreak()" >返回</button>-->
+<!--  </div>-->
+<!--</form>-->

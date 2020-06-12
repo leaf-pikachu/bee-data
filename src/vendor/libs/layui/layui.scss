@@ -1,0 +1,33 @@
+@import '~src/assets/vendor/layui/css/layui';
+@import '~src/assets/vendor/layui-soul-table/soulTable';
+
+//// 样式修复
+.layui-table-tips-c {
+  padding: 0px;
+  top: -8px;
+}
+
+// btn 字体颜色修复
+.layui-layer-btn {
+  color: #fff!important;
+}
+.layui-form-switch {
+  width: 53px;
+  height: 24px;
+}
+
+.soul-edit-out .layui-form-switch {
+  width: 53px;
+}
+
+.soul-edit-out {
+  a {
+    color: #fff!important;
+  }
+}
+
+.layui-form-checkbox{
+  i {
+    height: 30px;
+  }
+}

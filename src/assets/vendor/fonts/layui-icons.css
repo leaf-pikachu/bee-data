@@ -1,0 +1,22 @@
+/** 自定义字体 **/
+/** 这里使用在线字体，如果需要离线包，请看 layui-o/README.md **/
+@font-face {
+  font-family: 'soul-icon';
+  src: url('layui/ext/iconfont.eot');
+  src: url('layui/ext/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('layui/ext/iconfont.woff2') format('woff2'),
+  url('layui/ext/iconfont.woff') format('woff'),
+  url('layui/ext/iconfont.ttf') format('truetype'),
+  url('layui/ext/iconfont.svg#iconfont') format('svg');
+}
+
+/** 图标字体 **/
+@font-face {
+  font-family: 'layui-icon';
+  src: url('layui/iconfont.eot?v=250');
+  src: url('layui/iconfont.eot?v=250#iefix') format('embedded-opentype'),
+  url('layui/iconfont.woff2?v=250') format('woff2'),
+  url('layui/iconfont.woff?v=250') format('woff'),
+  url('layui/iconfont.ttf?v=250') format('truetype'),
+  url('layui/iconfont.svg?v=250#layui-icon') format('svg');
+}
