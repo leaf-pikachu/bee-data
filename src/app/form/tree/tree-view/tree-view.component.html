@@ -1,0 +1,7 @@
+<div>
+  <ul class="ui-select-choices" role="menu">
+      <span *ngFor="let item of _items">
+        <ng-tree-node  [item]="item" (itemLoad)="itemLoad($event)" (select)="itemSelected_($event)"></ng-tree-node>
+      </span>
+  </ul>
+</div>

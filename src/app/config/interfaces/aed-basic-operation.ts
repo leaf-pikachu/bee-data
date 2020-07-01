@@ -1,15 +1,15 @@
 /**
  * BeeFramework addRow/editRow/rowDetails 基础操作
  */
-import { FormGroup, NgForm } from '@angular/forms';
+import {FormGroup, FormGroupDirective, NgForm} from '@angular/forms';
 
 export interface AedBasicOperation {
   /** 返回操作 **/
   aedBreak();
   /** 重置表单操作 **/
-  aedReset(formNg: NgForm);
+  aedReset(formNg: FormGroupDirective);
   /** 保存表单操作**/
-  aedSave(formNg: NgForm);
+  aedSave(formNg: FormGroupDirective);
   /** 加载FormControl Value 初始化值**/
   loadControlValue();
   /** 初始化FormGroup **/

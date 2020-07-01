@@ -1,0 +1,20 @@
+<div style="display: block" (mouseover)="open($event)" (mouseleave)="close($event)">
+  <li class="dropdown-item" [class.active]="item.selected">
+    <span style="display: inline-block; width: 32px;" (click)="toggleOpen($event)" [hidden]="item.isLoaded && !item.hasChildren">
+      <i class="fas fa-2x" style="vertical-align: middle;"
+         [hidden]="item.isLoaded && !item.hasChildren"
+         [class.fa-caret-right]="!item.isOpen && (item.hasChildren || !item.isLoaded)"
+         [class.fa-caret-down]="item.isOpen"
+      ></i>
+    </span>
+
+    <div style="vertical-align: middle; width: 100%; display: inline-block; cursor: pointer;" (click)="itemSelected($event)">
+      {{item.name}}
+    </div>
+  </li>
+  <ul *ngIf="item.hasChildren && item.isOpen" class="ui-select-choices" role="menu">
+    <span *ngFor="let child of item.children" role="menuitem">
+      <ng-tree-node [item]="child" (select)="itemSelected($event)" (itemLoad)="itemLoading($event)"></ng-tree-node>
+    </span>
+  </ul>
+</div>

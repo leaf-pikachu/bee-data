@@ -287,6 +287,7 @@ export class BeeHttpService {
 
     // if (res.status)
   };
+
   /**
    * 获取服务器的绝对请求路径
    * @param url 请求的相对路径

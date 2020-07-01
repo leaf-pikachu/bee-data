@@ -16,7 +16,9 @@ import { Page2Component } from '@bee/page-2/page-2.component';
 import { AppComponent } from '@bee/app.component';
 import { BlockUIModule } from 'ng-block-ui';
 import { ModuleComponent } from './page/module/module.component';
-import {LayuiModule} from '@bee/libs/layui/layui.module';
+import { BeeRoutingModule } from '@bee/core/bee-routing.module';
+import {CommonModule} from '@angular/common';
+import {BeeFormModule} from '@bee/form/bee-form.module';
 
 
 
@@ -30,6 +32,7 @@ import {LayuiModule} from '@bee/libs/layui/layui.module';
     ModuleComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     RouterModule,
     FormsModule,
@@ -40,7 +43,8 @@ import {LayuiModule} from '@bee/libs/layui/layui.module';
     AgGridModule.withComponents([]),
     NgxDatatableModule,
     BeeCoreModule,
-    LayoutModule
+    LayoutModule,
+    BeeRoutingModule
   ],
   providers: [
   ],

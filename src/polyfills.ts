@@ -92,4 +92,5 @@ import '@angular/localize/init'
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+require('jquery')
 

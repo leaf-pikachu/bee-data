@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subject } from 'rxjs';
+import { Observable, Observer, Subject} from 'rxjs';
 import { environment } from '@bee/environment';
 import { NotificationService } from '@bee/core/notifications/notification.service';
 import { BeeWebSocketService } from '@bee/core/websocket/bee-websocket.service';
@@ -10,6 +10,7 @@ import { BeeWebSocketService } from '@bee/core/websocket/bee-websocket.service';
 })
 export class SystemWebSocketService {
   private ws: WebSocket;
+
   constructor(private $webSocket: BeeWebSocketService, private notification: NotificationService) { }
 
   /**
@@ -25,14 +26,15 @@ export class SystemWebSocketService {
       this.notification.info('已订阅系统服务广播！');
     };
 
-    const observable = Observable.create((obs: Observer<MessageEvent>) => {
+    let observable = new Observable((obs: Observer<MessageEvent>) => {
       this.ws.onmessage = obs.next.bind(obs);
       this.ws.onerror = obs.error.bind(obs);
       this.ws.onclose = obs.complete.bind(obs);
       return this.ws.onclose.bind(this.ws);
     });
 
-    const observer = {
+
+    let observer = {
       next: (data: any) => {
         if (this.ws.readyState === WebSocket.OPEN) {
           this.ws.send(data);

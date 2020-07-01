@@ -1,0 +1,19 @@
+<label [for]="name" class="form-label">
+  <span *ngIf="isRequired" class="text-danger"><i class="fa fa-asterisk"></i></span>
+  {{labelTitle}}
+</label>
+
+<textarea autosize
+  [id]="name"
+  [name]="name"
+  [formControl]="beeRFC"
+  [placeholder]="placeholder"
+  class="form-control {{color}}"
+  [rows]="rows"
+  [ngClass]="
+  {
+  'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),
+  'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)
+  }"
+></textarea>
+<bee-validate-error-msg [title]="labelTitle" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-validate-error-msg>

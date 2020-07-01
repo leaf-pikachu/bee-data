@@ -53,7 +53,7 @@ export class BeeDictionaryConstantService {
       }
 
     };
-    this.$storage.get(key, value => loadData(value, key, url, {}, acceptProcess))
+    this.$storage.get(key, value => loadData(value, key, url, {}, acceptProcess));
   }
 
   /**

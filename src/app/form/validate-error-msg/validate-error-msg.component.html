@@ -1,0 +1,8 @@
+<div class="ml-1"  *ngIf="validateFormControl.invalid && (validateForm.submitted || validateFormControl.dirty || validateFormControl.touched)">
+  <small class="invalid-feedback display-b" *ngIf="validateFormControl.errors"> <i class="fas fa-exclamation-triangle text-warning mr-1"></i>{{validateFormControl.errors | json}}</small>
+  <small class="invalid-feedback display-b" *ngIf="validateFormControl.hasError(errorKeys.ngRequired)"> <i class="fas fa-exclamation-triangle text-warning mr-1"></i>{{title}} 不可为空.</small>
+  <small class="invalid-feedback display-b" *ngIf="validateFormControl.hasError(errorKeys.beeRequired)"> <i class="fas fa-exclamation-triangle text-warning mr-1"></i>{{title}} {{validateFormControl.getError(errorKeys.beeRequired)}}.</small>
+  <small class="invalid-feedback display-b" *ngIf="validateFormControl.hasError('min')"> <i class="fas fa-exclamation-triangle text-warning mr-1"></i>{{title}} 最小值为 {{validateFormControl.errors.min.min}}</small>
+  <small class="invalid-feedback display-b" *ngIf="validateFormControl.hasError('check')"> <i class="fas fa-exclamation-triangle text-warning mr-1"></i>{{title}} {{validateFormControl.errors.check}}</small>
+  <small class="invalid-feedback display-b" *ngIf="validateFormControl.hasError(errorKeys.beeCheck)"> <i class="fas fa-exclamation-triangle text-warning mr-1"></i>{{title}} {{validateFormControl.getError(errorKeys.beeCheck)}}</small>
+</div>

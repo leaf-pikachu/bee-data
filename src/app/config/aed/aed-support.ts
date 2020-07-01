@@ -1,5 +1,5 @@
 import { EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import {FormGroup, FormGroupDirective, NgForm} from '@angular/forms';
 import { isBoolean } from "ts-util-is";
 
 import { isNullOrEmpty } from '@bee/config/utils/string-utils';
@@ -113,7 +113,7 @@ export abstract class AedSupport extends FormControlSupport implements AedBasicO
   }
   /**
    * 重置表单**/
-  aedReset(formNg: NgForm) {
+  aedReset(formNg: FormGroupDirective) {
     formNg.resetForm();
   }
   /**
@@ -123,7 +123,7 @@ export abstract class AedSupport extends FormControlSupport implements AedBasicO
   }
   /**
    * 提交后台的数据**/
-   aedSaveParams(formNg: NgForm) {
+   aedSaveParams(formNg: FormGroupDirective) {
     let params = {rowId: this.rowId || null, ...this.editValue,...formNg.value};
 
     console.info('转换前数据：', params);
@@ -142,7 +142,7 @@ export abstract class AedSupport extends FormControlSupport implements AedBasicO
   }
   /**
    * 提交数据**/
-  aedSave(formNg: NgForm) {
+  aedSave(formNg: FormGroupDirective) {
 
     if (this.allowSave(formNg)) {
       this.$http.post(this.saveUrl, this.aedSaveParams(formNg), true).subscribe(
@@ -168,7 +168,7 @@ export abstract class AedSupport extends FormControlSupport implements AedBasicO
    * Tips: 检验表单是否验证通过-值是否发生变更
    * @param formNg
    */
-  allowSave(formNg: NgForm): boolean {
+  allowSave(formNg: FormGroupDirective): boolean {
     return formNg.valid && formNg.touched && BeeFormSecurity.checkFormValueChange(this.editValue, formNg.value);
   }
 

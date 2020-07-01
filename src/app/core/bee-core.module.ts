@@ -12,6 +12,10 @@ import { BeeRoutingModule } from '@bee/core/bee-routing.module';
 import { BeeThemeService } from '@bee/core/theme/bee-theme.service';
 import { BeeService } from '@bee/core/service/bee.service';
 import { BlockUIModule } from 'ng-block-ui';
+import {BeeHttpService} from '@bee/core/service/bee-http.service';
+import {BeeStorageService} from '@bee/core/service/bee-storage.service';
+import {BeeDictionaryConstantService} from '@bee/core/service/bee-dictionary-constant.service';
+import {services} from '@bee/core/service';
 
 
 @NgModule({
@@ -22,13 +26,12 @@ import { BlockUIModule } from 'ng-block-ui';
     BlockUIModule.forRoot(),
     IonicStorageModule.forRoot({
       name: 'bee-data'
-    }),
-    BeeRoutingModule
+    })
   ],
   providers:[
+    ...services,
     Title,
     BeeThemeService,
-    BeeService,
     CookieService
   ]
 })
