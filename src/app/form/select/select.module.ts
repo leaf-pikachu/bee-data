@@ -47,6 +47,7 @@ const ngxTreeSelectOperation : TreeSelectDefaultOptions = {
     ValidateErrorMsgModule
   ],
   exports: [
+    NgSelectModule,
     SelectComponent,
     TreeSelectComponent,
   ],

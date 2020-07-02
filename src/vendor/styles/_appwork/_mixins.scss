@@ -855,7 +855,8 @@
     @include border-radius($form-feedback-tooltip-border-radius);
   }
 
-  @include form-control-validated('.form-control, .custom-select, .form-control-file, .custom-control-input', $state) {
+  @include form-control-validated('.form-control, .custom-select, .form-control-file, .custom-control-input, ng-select', $state) {
+    ~ bee-validate-error-msg .#{$state}-feedback,
     ~ .#{$state}-feedback,
     ~ .#{$state}-tooltip {
       display: block;

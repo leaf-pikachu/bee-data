@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import UUID  from 'uuidjs'
 import { isString } from "ts-util-is";
 
 /**
@@ -24,6 +25,7 @@ export class SwitchIconComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.name = this.name || UUID.generate();
     this.beeRFC.setValue(this.beeRFC.value === 't' || this.beeRFC.value === true);
     this.beeRFC.valueChanges.subscribe(value => {
 

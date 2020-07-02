@@ -30,13 +30,13 @@ export class ModuleComponent extends AedSupport{
 
   formGroupSettings() {
     this.aeFG = this.fb.group({
-      numberOrder: [this.fcValue(null, false), [BeeRequired.requiredText(), UniversalValidators.isNumber]],
+      numberOrder: [this.fcValue(null, false), [BeeRequired.requiredMsg(), UniversalValidators.isNumber]],
       systemRowId: [this.fcValue(null, true), [BeeRequired.requiredSelect()]],
       moduleLevel: [this.fcValue(1, true), [BeeRequired.requiredSelect(), UniversalValidators.isNumber]],
       parentModuleRowId: [this.fcValue(null, false)],
-      moduleEnName: [this.fcValue(null, true), [BeeRequired.requiredText(), UniversalValidators.maxLength(150)]],
-      moduleChName: [this.fcValue(null, true), [BeeRequired.requiredText(), UniversalValidators.maxLength(150)]],
-      moduleURI: [this.fcValue(null, true), [BeeRequired.requiredText(), UniversalValidators.maxLength(50)]],
+      moduleEnName: [this.fcValue(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(150)]],
+      moduleChName: [this.fcValue(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(150)]],
+      moduleURI: [this.fcValue(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(50)]],
       listPageType: [this.fcValue(null, true), [BeeRequired.requiredSelect()]],
       editPageType: [this.fcValue(null, true), [BeeRequired.requiredSelect()]],
       mainModuleSwitch: [this.fcValue('t', false)],

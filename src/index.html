@@ -21,8 +21,25 @@
   <link rel="stylesheet" href="assets/vendor/fonts/open-iconic.css">
   <link rel="stylesheet" href="assets/vendor/fonts/pe-icon-7-stroke.css">
 
-  <!-- Layout helpers -->
+  <!-- Core stylesheets -->
+  <link rel="stylesheet" href="vendor/styles/bootstrap.css" class="theme-settings-bootstrap-css">
+  <link rel="stylesheet" href="vendor/styles/appwork.css" class="theme-settings-appwork-css">
+  <link rel="stylesheet" href="vendor/styles/theme-corporate.css" class="theme-settings-theme-css">
+  <link rel="stylesheet" href="vendor/styles/colors.css" class="theme-settings-colors-css">
+  <link rel="stylesheet" href="vendor/styles/uikit.css">
+
+  <script src="assets/vendor/js/material-ripple.js"></script>
   <script src="assets/vendor/js/layout-helpers.js"></script>
+
+  <!-- Theme settings -->
+  <!-- This file MUST be included after core stylesheets and layout-helpers.js in the <head> section -->
+  <script src="assets/vendor/js/theme-settings.js"></script>
+  <script>
+    window.themeSettings = new ThemeSettings({
+      cssPath: 'vendor/styles/',
+      themesPath: 'vendor/styles/'
+    });
+  </script>
 
   <!-- Custom elements polyfill -->
   <script>this.customElements||document.write('<script src="//unpkg.com/document-register-element"><\x2fscript>');</script>

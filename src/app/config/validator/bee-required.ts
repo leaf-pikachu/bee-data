@@ -1,5 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { validatorKeys } from '@bee/config/validator/validator-config';
+
 /**
  * bee framework 自定义验证器助手类
  */
@@ -14,7 +15,7 @@ export class BeeRequired {
   static required(type: 'text' | 'select', errorMsg?: string): ValidatorFn {
     switch (type) {
       case 'text':
-        return this.requiredText(errorMsg);
+        return this.requiredMsg(errorMsg);
       case 'select':
         return this.requiredSelect(errorMsg);
     }
@@ -24,7 +25,7 @@ export class BeeRequired {
    * @param errorMsg
    * @see validatorKeys.beeRequired
    */
-  static requiredText(errorMsg?: string): ValidatorFn {
+  static requiredMsg(errorMsg?: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any} => {
       if (control.value)  {
         return null;
@@ -34,12 +35,20 @@ export class BeeRequired {
     } ;
   }
 
+  static requiredFlag(control: AbstractControl): {[key: string]: any} {
+    if (control.value)  {
+      return null;
+    } else {
+      return {[validatorKeys.beeRequired] : '此为必填项，不可为空！'};
+    }
+  }
+
   /**
    * 下拉框必选项
    * @param errorMsg
    * @see validatorKeys.beeRequired
    */
-  static requiredSelect(errorMsg?: string): ValidatorFn {
+  static requiredSelect(errorMsg?: string): any {
     return (control: AbstractControl): {[key: string]: any} => {
       if (control.value) {
         return null;

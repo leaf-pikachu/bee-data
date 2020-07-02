@@ -7,7 +7,9 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "inlineStyle": true,
+          "spec": false
         }
       },
       "root": "",
@@ -22,6 +24,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "extractCss": true,
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -29,11 +32,33 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/vendor/styles/bootstrap.scss",
-              "src/vendor/styles/appwork.scss",
-              "src/vendor/styles/theme-corporate.scss",
-              "src/vendor/styles/colors.scss",
-              "src/vendor/styles/uikit.scss"
+              { "input": "src/vendor/styles/rtl/appwork.scss", "bundleName": "vendor/styles/appwork", "lazy": true },
+              { "input": "src/vendor/styles/rtl/appwork-material.scss", "bundleName": "vendor/styles/appwork-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/bootstrap.scss", "bundleName": "vendor/styles/bootstrap", "lazy": true },
+              { "input": "src/vendor/styles/rtl/bootstrap-material.scss", "bundleName": "vendor/styles/bootstrap-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/colors.scss", "bundleName": "vendor/styles/colors", "lazy": true },
+              { "input": "src/vendor/styles/rtl/colors-material.scss", "bundleName": "vendor/styles/colors-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/uikit.scss", "bundleName": "vendor/styles/uikit", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-air.scss", "bundleName": "vendor/styles/theme-air", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-air-material.scss", "bundleName": "vendor/styles/theme-air-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-corporate.scss", "bundleName": "vendor/styles/theme-corporate", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-corporate-material.scss", "bundleName": "vendor/styles/theme-corporate-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-cotton.scss", "bundleName": "vendor/styles/theme-cotton", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-cotton-material.scss", "bundleName": "vendor/styles/theme-cotton-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-gradient.scss", "bundleName": "vendor/styles/theme-gradient", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-gradient-material.scss", "bundleName": "vendor/styles/theme-gradient-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-paper.scss", "bundleName": "vendor/styles/theme-paper", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-paper-material.scss", "bundleName": "vendor/styles/theme-paper-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-shadow.scss", "bundleName": "vendor/styles/theme-shadow", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-shadow-material.scss", "bundleName": "vendor/styles/theme-shadow-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-soft.scss", "bundleName": "vendor/styles/theme-soft", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-soft-material.scss", "bundleName": "vendor/styles/theme-soft-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-sunrise.scss", "bundleName": "vendor/styles/theme-sunrise", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-sunrise-material.scss", "bundleName": "vendor/styles/theme-sunrise-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-twitlight.scss", "bundleName": "vendor/styles/theme-twitlight", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-twitlight-material.scss", "bundleName": "vendor/styles/theme-twitlight-material", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-vibrant.scss", "bundleName": "vendor/styles/theme-vibrant", "lazy": true },
+              { "input": "src/vendor/styles/rtl/theme-vibrant-material.scss", "bundleName": "vendor/styles/theme-vibrant-material", "lazy": true }
             ],
             "scripts": []
           },
@@ -65,6 +90,13 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "serve": {
+              "extractCss": true,
+              "namedChunks": true,
+              "vendorChunk": true,
+              "commonChunk": true,
+              "verbose": false
             }
           }
         },

@@ -1,0 +1,43 @@
+<label class="form-label">
+  <span *ngIf="isRequired" class="text-danger"><i class="fa fa-asterisk"></i></span>
+  {{labelTitle}}
+</label>
+<!--formControlName="{{formControlName}}"-->
+<!--[formControl]="beeRFC"-->
+<!--<ng-select-->
+<!--  [items]="items"-->
+<!--  [bindLabel]="bindLabel"-->
+<!--  [bindValue]="bindValue"-->
+<!--  [placeholder]="placeholder"-->
+<!--  [formControl]="beeRFC"-->
+<!--  [ngClass]="{-->
+<!--  'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),-->
+<!--  'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)-->
+<!--  }"-->
+<!--&gt;-->
+
+<!--</ng-select>-->
+
+<ng-select [items]="photosBuffer"
+           [virtualScroll]="true"
+           [loading]="loading"
+           bindLabel="title"
+           bindValue="thumbnailUrl"
+           (scroll)="onScroll($event)"
+           (scrollToEnd)="onScrollToEnd()"
+           [placeholder]="placeholder"
+           [formControl]="beeRFC"
+           [searchFn]="onSearch"
+           [ngClass]="{
+            'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),
+            'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)
+          }"
+>
+  <ng-template ng-header-tmp>
+    <small class="form-text text-muted">Loaded {{photosBuffer.length}} of {{photos.length}}</small>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index">
+    <b>{{index}}</b> {{item.title}}
+  </ng-template>
+</ng-select>
+<bee-validate-error-msg [title]="labelTitle" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-validate-error-msg>

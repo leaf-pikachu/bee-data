@@ -8,7 +8,7 @@
 //@import "~src/vendor/libs/ngx-swiper-wrapper/mixins";
 //@import "~src/vendor/libs/spinkit/mixins";
 //@import "~src/vendor/libs/plyr/mixins";
-//@import "~src/vendor/libs/ng-select/mixins";
+@import "~src/vendor/libs/ng-select/mixins";
 //@import "~src/vendor/libs/ngx-chips/mixins";
 //@import "~src/vendor/libs/ngx-datatable/mixins";
 //@import "~src/vendor/libs/ng2-archwizard/mixins";
@@ -26,7 +26,7 @@
   //@include swiper-theme($background);
   //@include spinkit-theme($background);
   //@include plyr-theme($background, $color);
-  //@include ng-select-theme($background, $color);
+  @include ng-select-theme($background, $color);
   //@include ngx-chips-theme($background, $color);
   //@include ngx-datatable-theme($background, $color);
   //@include ng2-archwizard-theme($background);

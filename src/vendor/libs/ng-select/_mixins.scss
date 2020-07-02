@@ -1,5 +1,4 @@
 @import "~src/vendor/styles/_appwork/functions";
-
 @mixin ng-select-variant($background, $color: null) {
   $color: if($color, $color, yiq($background));
 

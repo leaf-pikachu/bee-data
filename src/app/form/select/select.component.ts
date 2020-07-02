@@ -5,9 +5,9 @@ import { BeeFormTools } from '@bee/config/validator/bee-form-tools';
 @Component({
   selector: 'bee-select',
   templateUrl: './select.component.html',
-  // styleUrls: [
-  //   '../../../../vendor/libs/ng-select/ng-select.scss'
-  // ]
+  styleUrls: [
+    '../../../vendor/libs/ng-select/ng-select.scss'
+  ]
 })
 export class SelectComponent implements OnInit {
   /**
