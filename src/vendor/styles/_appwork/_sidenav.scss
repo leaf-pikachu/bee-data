@@ -161,8 +161,8 @@
 
   &,
   .sidenav-block,
-  .sidenav-inner > .sidenav-item,
-  .sidenav-inner > .sidenav-header {
+  .sidenav-inner  .sidenav-item,
+  .sidenav-inner  .sidenav-header {
     width: $sidenav-width;
   }
 
@@ -298,7 +298,7 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-toggle::after {
+  .sidenav-inner  .sidenav-item  .sidenav-toggle::after {
     transform: translateY(-50%) rotate(-45deg);
 
     @include rtl-style {
@@ -306,7 +306,7 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item:not(.sidenav-item-closing).open > .sidenav-toggle::after {
+  .sidenav-inner  .sidenav-item:not(.sidenav-item-closing).open  .sidenav-toggle::after {
     transform: translateY(-50%) rotate(135deg);
 
     @include rtl-style {
@@ -314,8 +314,8 @@
     }
   }
 
-  .sidenav-inner > .sidenav-header,
-  .sidenav-inner > .sidenav-divider {
+  .sidenav-inner  .sidenav-header,
+  .sidenav-inner  .sidenav-divider {
     display: none !important;
   }
 
@@ -338,11 +338,11 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-menu {
+  .sidenav-inner  .sidenav-item  .sidenav-menu {
     @include border-bottom-radius($border-radius);
   }
 
-  &:not(.sidenav-no-animation) .sidenav-inner > .sidenav-item.open > .sidenav-menu {
+  &:not(.sidenav-no-animation) .sidenav-inner  .sidenav-item.open  .sidenav-menu {
     animation: sidenavDropdownShow $sidenav-animation-duration ease-in-out;
   }
 
@@ -462,8 +462,8 @@
     background: $sidenav-dark-menu-bg;
   }
 
-  .sidenav-inner > .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-menu,
-  .sidenav-inner > .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-toggle {
+  .sidenav-inner  .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-menu,
+  .sidenav-inner  .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-toggle {
     color: $navbar-dark-color;
   }
 
@@ -477,20 +477,20 @@
 
   hr,
   .sidenav-divider,
-  .sidenav-inner > .sidenav-item.open > .sidenav-menu::before {
+  .sidenav-inner  .sidenav-item.open  .sidenav-menu::before {
     border-color: $sidenav-dark-border-color !important;
   }
 
-  .sidenav-inner > .sidenav-header::before,
+  .sidenav-inner  .sidenav-header::before,
   .sidenav-block::before {
     background-color: $navbar-dark-disabled-color;
   }
 
-  .sidenav-inner > .sidenav-item.open .sidenav-item.open > .sidenav-toggle::before {
+  .sidenav-inner  .sidenav-item.open .sidenav-item.open  .sidenav-toggle::before {
     background-color: $sidenav-dark-border-color;
   }
 
-  .sidenav-inner > .sidenav-item.open .sidenav-item.active > .sidenav-link::before {
+  .sidenav-inner  .sidenav-item.open .sidenav-item.active  .sidenav-link::before {
     background-color: $navbar-dark-active-color;
   }
 
@@ -520,17 +520,17 @@
     color: $navbar-light-disabled-color !important;
   }
 
-  .sidenav-item.open:not(.sidenav-item-closing) > .sidenav-toggle,
-  .sidenav-item.active > .sidenav-link {
+  .sidenav-item.open:not(.sidenav-item-closing)  .sidenav-toggle,
+  .sidenav-item.active  .sidenav-link {
     color: $navbar-light-active-color;
   }
 
-  .sidenav-item.active > .sidenav-link:not(.sidenav-toggle) {
+  .sidenav-item.active  .sidenav-link:not(.sidenav-toggle) {
     background: $sidenav-light-menu-bg;
   }
 
-  .sidenav-inner > .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-menu,
-  .sidenav-inner > .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-toggle {
+  .sidenav-inner  .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-menu,
+  .sidenav-inner  .sidenav-item.sidenav-item-closing .sidenav-item.open .sidenav-toggle {
     color: $navbar-light-color;
   }
 
@@ -544,20 +544,20 @@
 
   hr,
   .sidenav-divider,
-  .sidenav-inner > .sidenav-item.open > .sidenav-menu::before {
+  .sidenav-inner  .sidenav-item.open  .sidenav-menu::before {
     border-color: $sidenav-light-border-color !important;
   }
 
-  .sidenav-inner > .sidenav-header::before,
+  .sidenav-inner  .sidenav-header::before,
   .sidenav-block::before {
     background-color: $navbar-light-disabled-color;
   }
 
-  .sidenav-inner > .sidenav-item.open .sidenav-item.open > .sidenav-toggle::before {
+  .sidenav-inner  .sidenav-item.open .sidenav-item.open  .sidenav-toggle::before {
     background-color: $sidenav-light-border-color;
   }
 
-  .sidenav-inner > .sidenav-item.open .sidenav-item.active > .sidenav-link::before {
+  .sidenav-inner  .sidenav-item.open .sidenav-item.active  .sidenav-link::before {
     background-color: $navbar-light-active-color;
   }
 
@@ -572,15 +572,15 @@
 @mixin sidenav-collapsed() {
   width: $sidenav-collapsed-width;
 
-  .sidenav-inner > .sidenav-item {
+  .sidenav-inner   .sidenav-item {
     width: $sidenav-width + ($sidenav-collapsed-width - $sidenav-vertical-link-padding-x - $sidenav-icon-expanded-width);
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-link {
+  .sidenav-inner  .sidenav-item  .sidenav-link {
     padding-left: $sidenav-collapsed-width;
   }
 
-  .sidenav-inner > .sidenav-header,
+  .sidenav-inner  .sidenav-header,
   .sidenav-block {
     position: relative;
     margin-left: $sidenav-collapsed-width;
@@ -604,8 +604,8 @@
     visibility: hidden !important;
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-menu,
-  .sidenav-inner > .sidenav-item.open > .sidenav-menu {
+  .sidenav-inner  .sidenav-item  .sidenav-menu,
+  .sidenav-inner  .sidenav-item.open  .sidenav-menu {
     position: relative;
     margin-left: $sidenav-collapsed-width - $sidenav-vertical-link-padding-x - $sidenav-icon-expanded-width;
     background: none !important;
@@ -616,7 +616,7 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item.open > .sidenav-menu {
+  .sidenav-inner  .sidenav-item.open  .sidenav-menu {
     &::before {
       content: "";
       position: absolute;
@@ -630,8 +630,8 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item.open .sidenav-item.open > .sidenav-toggle,
-  .sidenav-inner > .sidenav-item.open .sidenav-item.active > .sidenav-link {
+  .sidenav-inner  .sidenav-item.open .sidenav-item.open  .sidenav-toggle,
+  .sidenav-inner  .sidenav-item.open .sidenav-item.active  .sidenav-link {
     &::before {
       content: "";
       position: absolute;
@@ -646,12 +646,12 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-toggle::after {
+  .sidenav-inner  .sidenav-item  .sidenav-toggle::after {
     right: auto;
     left: $sidenav-collapsed-width - $sidenav-control-arrow-size - .375rem;
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-link .sidenav-icon {
+  .sidenav-inner  .sidenav-item  .sidenav-link .sidenav-icon {
     margin-left: -$sidenav-collapsed-width;
     width: $sidenav-collapsed-width;
     text-align: center;
@@ -659,12 +659,12 @@
 }
 
 @mixin sidenav-collapsed-rtl() {
-  .sidenav-inner > .sidenav-item > .sidenav-link {
+  .sidenav-inner   .sidenav-item > .sidenav-link {
     padding-right: $sidenav-collapsed-width;
     padding-left: $sidenav-vertical-link-padding-x;
   }
 
-  .sidenav-inner > .sidenav-header,
+  .sidenav-inner   .sidenav-header,
   .sidenav-block {
     margin-right: $sidenav-collapsed-width;
     margin-left: 0;
@@ -677,33 +677,33 @@
     }
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-menu,
-  .sidenav-inner > .sidenav-item.open > .sidenav-menu {
+  .sidenav-inner  .sidenav-item > .sidenav-menu,
+  .sidenav-inner  .sidenav-item.open > .sidenav-menu {
     margin-right: $sidenav-collapsed-width - $sidenav-vertical-link-padding-x - $sidenav-icon-expanded-width;
     margin-left: 0;
   }
 
-  .sidenav-inner > .sidenav-item.open > .sidenav-menu::before {
+  .sidenav-inner   .sidenav-item.open > .sidenav-menu::before {
     right: calc(#{$sidenav-collapsed-width / 2} - 1px);
     left: auto;
     margin-right: -($sidenav-collapsed-width - $sidenav-vertical-link-padding-x - $sidenav-icon-expanded-width);
     margin-left: 0;
   }
 
-  .sidenav-inner > .sidenav-item.open .sidenav-item.open > .sidenav-toggle::before,
-  .sidenav-inner > .sidenav-item.open .sidenav-item.active > .sidenav-link::before {
+  .sidenav-inner   .sidenav-item.open .sidenav-item.open > .sidenav-toggle::before,
+  .sidenav-inner   .sidenav-item.open .sidenav-item.active > .sidenav-link::before {
     right: 0;
     left: auto;
     margin-right: calc(#{($sidenav-collapsed-width / 2) - ($sidenav-collapsed-width - $sidenav-vertical-link-padding-x - $sidenav-icon-expanded-width)} - 4px);
     margin-left: 0;
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-toggle::after {
+  .sidenav-inner   .sidenav-item > .sidenav-toggle::after {
     right: $sidenav-collapsed-width - $sidenav-control-arrow-size - .375rem;
     left: auto;
   }
 
-  .sidenav-inner > .sidenav-item > .sidenav-link .sidenav-icon {
+  .sidenav-inner   .sidenav-item > .sidenav-link .sidenav-icon {
     margin-right: -$sidenav-collapsed-width;
     margin-left: $sidenav-icon-expanded-spacer;
   }

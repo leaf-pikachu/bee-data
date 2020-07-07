@@ -30,20 +30,20 @@ export class ModuleComponent extends AedSupport{
 
   formGroupSettings() {
     this.aeFG = this.fb.group({
-      numberOrder: [this.fcValue(null, false), [BeeRequired.requiredMsg(), UniversalValidators.isNumber]],
-      systemRowId: [this.fcValue(null, true), [BeeRequired.requiredSelect()]],
-      moduleLevel: [this.fcValue(1, true), [BeeRequired.requiredSelect(), UniversalValidators.isNumber]],
-      parentModuleRowId: [this.fcValue(null, false)],
-      moduleEnName: [this.fcValue(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(150)]],
-      moduleChName: [this.fcValue(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(150)]],
-      moduleURI: [this.fcValue(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(50)]],
-      listPageType: [this.fcValue(null, true), [BeeRequired.requiredSelect()]],
-      editPageType: [this.fcValue(null, true), [BeeRequired.requiredSelect()]],
-      mainModuleSwitch: [this.fcValue('t', false)],
-      moduleShowSwitch: [this.fcValue('t', false)],
-      toolbarShowSwitch: [this.fcValue('t', false)],
-      operationShowSwitch: [this.fcValue('t', false)],
-      otherOperationShowSwitch: [this.fcValue('t', false)],
+      numberOrder: [this.formState(null, false), [BeeRequired.requiredMsg(), UniversalValidators.isNumber]],
+      systemRowId: [this.formState(null, true), [BeeRequired.requiredSelect()]],
+      moduleLevel: [this.formState(1, true), [BeeRequired.requiredSelect(), UniversalValidators.isNumber]],
+      parentModuleRowId: [this.formState(null, false)],
+      moduleEnName: [this.formState(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(150)]],
+      moduleChName: [this.formState(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(150)]],
+      moduleURI: [this.formState(null, true), [BeeRequired.requiredMsg(), UniversalValidators.maxLength(50)]],
+      listPageType: [this.formState(null, true), [BeeRequired.requiredSelect()]],
+      editPageType: [this.formState(null, true), [BeeRequired.requiredSelect()]],
+      mainModuleSwitch: [this.formState('t', false)],
+      moduleShowSwitch: [this.formState('t', false)],
+      toolbarShowSwitch: [this.formState('t', false)],
+      operationShowSwitch: [this.formState('t', false)],
+      otherOperationShowSwitch: [this.formState('t', false)],
       moduleDesc: [null]
     });
   }

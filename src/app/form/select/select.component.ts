@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, NgForm } from '@angular/forms';
 import { BeeFormTools } from '@bee/config/validator/bee-form-tools';
+import { ElementState, elementStateSegment } from '@bee/form/bee-form-element';
 
 @Component({
   selector: 'bee-select',
@@ -15,33 +16,20 @@ export class SelectComponent implements OnInit {
    */
   @Input() beeForm: NgForm;
 
+  @Input() elementState: ElementState;
+
   /**
    * Bee Reactive FormControl instance
    */
-  @Input() beeRFC: FormControl;
-  /**
-   *  label title
-   */
-  @Input() labelTitle: string;
-  @Input() items: any[];
-  @Input() bindLabel: string;
-  @Input() bindValue: string;
-  @Input() placeholder: string;
-  @Input() color: string;
+  beeRFC: FormControl;
+
   isRequired: boolean = false;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.initializeProperties();
-  }
-
-  protected initializeProperties(): void {
-    this.placeholder = this.placeholder || '';
-    this.bindValue = this.bindValue || 'id';
-    this.bindLabel = this.bindLabel || 'text';
-    // this.maxLength = this.maxLength || null;
-    // this.color = this.color || MaterialColorConfig.basic;
+    this.beeRFC = elementStateSegment(this.formBuilder, this.elementState);
     this.isRequired = BeeFormTools.checkRequired(this.beeRFC);
   }
+
 }

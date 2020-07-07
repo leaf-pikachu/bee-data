@@ -337,7 +337,7 @@ export class BeeHttpService {
 
     if (params) {
       for (let key in params) {
-        inputParams = inputParams.set(key, params[key]);
+        inputParams = inputParams.set(key, JSON.stringify(params[key]));
       }
     }
 

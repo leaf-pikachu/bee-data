@@ -9,6 +9,8 @@ import { Home1Component } from '@bee/page/bee-admin/home/home1.component';
 import { ModuleComponent } from './module/module.component';
 import { BeeFormModule } from '@bee/form/bee-form.module';
 import { ModuleParentSelectComponent } from './module/module-parent-select/module-parent-select.component';
+import { IconSelectComponent } from './module/icon-select/icon-select.component';
+import { IconComponent } from './icon/icon.component';
 
 
 
@@ -16,7 +18,9 @@ import { ModuleParentSelectComponent } from './module/module-parent-select/modul
   declarations: [
     Home1Component,
     ModuleComponent,
-    ModuleParentSelectComponent
+    ModuleParentSelectComponent,
+    IconSelectComponent,
+    IconComponent
   ],
   imports: [
     CommonModule,

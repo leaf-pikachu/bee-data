@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   beeframework: {
     wsapi: 'ws://localhost:8060/beeframework/websocket',
-    api: 'beeframework',
+    api: null,
     db: 'BEE_FRAMEWORK_DATABASE'
   }
 };

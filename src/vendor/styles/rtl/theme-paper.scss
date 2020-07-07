@@ -33,12 +33,12 @@ body {
 @include appwork-sidenav-variant('.bg-sidenav-theme', #fff, $color: $text-muted, $active-color: $body-color, $menu-bg: darken($body-bg, 2.5%));
 
 .bg-sidenav-theme {
-  .sidenav-inner > .sidenav-item > .sidenav-link .sidenav-icon,
-  .sidenav-inner > .sidenav-item > .sidenav-link:hover .sidenav-icon,
-  .sidenav-inner > .sidenav-item > .sidenav-link:focus .sidenav-icon {
+  .sidenav-inner    .sidenav-item > .sidenav-link .sidenav-icon,
+  .sidenav-inner    .sidenav-item > .sidenav-link:hover .sidenav-icon,
+  .sidenav-inner    .sidenav-item > .sidenav-link:focus .sidenav-icon {
     color: $gray-300;
   }
-  .sidenav-inner > .sidenav-item.active > .sidenav-link .sidenav-icon {
+  .sidenav-inner    .sidenav-item.active > .sidenav-link .sidenav-icon {
     color: $primary-color !important;
   }
   .sidenav-item.active > .sidenav-link:not(.sidenav-toggle) {

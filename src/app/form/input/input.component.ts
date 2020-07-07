@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, NgForm} from '@angular/forms';
+import {FormBuilder, FormControl, NgForm} from '@angular/forms';
 import {BeeFormTools} from '@bee/config/validator/bee-form-tools';
+import {ElementState, elementStateSegment} from '@bee/form/bee-form-element';
 
 @Component({
   selector: 'bee-input',
@@ -13,39 +14,20 @@ export class InputComponent implements OnInit {
    */
   @Input() beeForm: NgForm;
 
+  @Input() elementState: ElementState;
+
   /**
    * Bee Reactive FormControl instance
    */
-  @Input() beeRFC: FormControl;
-  /**
-   *  label title
-   */
-  @Input() labelTitle: string;
-  @Input() name: string;
-  @Input() placeholder: string;
-  @Input() type: string;
-  @Input() color: string;
+  beeRFC: FormControl;
+
   isRequired: boolean;
   inputType: string;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.initializeProperties();
-  }
-
-  protected initializeProperties(): void {
-    this.isRequired = false;
-    this.placeholder = this.placeholder || '';
-    this.inputType = this.type || 'text';
-    // this.maxLength = this.maxLength || null;
-    // this.color = this.color || MaterialColorConfig.basic;
-
-    // validator function returns object only contains requiredText property.
-    // Whatever how many validators you've set.
-    // We just want to get the validators from the FromControl instead of the duplicate @Input parameter.
-    // By now Google only provides setValidators method. But no getValidators method.
-    // More rowDetails check on https://github.com/angular/angular/issues/13461
+    this.beeRFC = elementStateSegment(this.formBuilder, this.elementState);
     this.isRequired = BeeFormTools.checkRequired(this.beeRFC);
   }
 }

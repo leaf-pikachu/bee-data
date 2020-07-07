@@ -2,6 +2,7 @@ import { Component, Input, AfterViewInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from '@bee/layout/layout.service';
 import { BeeService } from '@bee/core/service/bee.service';
+import {BeeHttpService} from '@bee/core/service/bee-http.service';
 
 @Component({
   selector: 'app-layout-sidenav',
@@ -15,11 +16,22 @@ export class LayoutSidenavComponent implements AfterViewInit {
   @HostBinding('class.layout-sidenav-horizontal') hostClassHorizontal = false;
   @HostBinding('class.flex-grow-0') hostClassFlex = false;
 
-  constructor(private router: Router, private beeService: BeeService, private layoutService: LayoutService) {
+  menus: any[];
+  constructor(private router: Router,
+              private beeService: BeeService,
+              private layoutService: LayoutService,
+              private $http: BeeHttpService) {
     // Set host classes
     this.hostClassVertical = this.orientation !== 'horizontal';
     this.hostClassHorizontal = !this.hostClassVertical;
     this.hostClassFlex = this.hostClassHorizontal;
+
+    this.$http.get("/admin/module/menus", {systemRowId: 10000}, false).subscribe( (menus: any) =>
+    {
+      this.menus = menus;
+      console.log(menus)
+    }
+    )
   }
 
   ngAfterViewInit() {

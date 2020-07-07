@@ -2,8 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "defaultProject": "bee-data",
   "projects": {
     "bee-data": {
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "bee",
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,9 +16,6 @@
           "spec": false
         }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,6 +31,12 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/vendor/libs",
+                "src/vendor/styles"
+              ]
+            },
             "styles": [
               "src/styles.scss",
               { "input": "src/vendor/styles/rtl/appwork.scss", "bundleName": "vendor/styles/appwork", "lazy": true },
@@ -162,7 +169,6 @@
       }
     }
   },
-  "defaultProject": "bee-data",
   "cli": {
     "analytics": "3f31d263-94cd-4973-a58c-43f3670e9252"
   }

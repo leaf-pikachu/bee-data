@@ -33,9 +33,9 @@ body {
 .bg-sidenav-theme {
   background: linear-gradient(to top, #4e54c8, #8c55e4);
 
-  .sidenav-inner > .sidenav-item > .sidenav-link .sidenav-icon,
-  .sidenav-inner > .sidenav-item > .sidenav-link:hover .sidenav-icon,
-  .sidenav-inner > .sidenav-item > .sidenav-link:focus .sidenav-icon {
+  .sidenav-inner    .sidenav-item > .sidenav-link .sidenav-icon,
+  .sidenav-inner    .sidenav-item > .sidenav-link:hover .sidenav-icon,
+  .sidenav-inner    .sidenav-item > .sidenav-link:focus .sidenav-icon {
     color: rgba(255,255,255,.7);
   }
 

@@ -35,7 +35,7 @@ export class BeeRequired {
     } ;
   }
 
-  static requiredFlag(control: AbstractControl): {[key: string]: any} {
+  static requiredFlag = (control: AbstractControl): {[key: string]: any} => {
     if (control.value)  {
       return null;
     } else {

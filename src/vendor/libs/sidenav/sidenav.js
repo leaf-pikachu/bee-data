@@ -141,7 +141,7 @@ class SideNav {
   }
 
   closeAll(closeChildren=this._closeChildren) {
-    const opened = this._el.querySelectorAll('.sidenav-inner > .sidenav-item.open')
+    const opened = this._el.querySelectorAll('.sidenav-inner    .sidenav-item.open')
 
     for (let i = 0, l = opened.length; i < l; i++) this.close(opened[i], closeChildren)
   }
@@ -612,7 +612,7 @@ class SideNav {
       this._nextBtn.addEventListener('click', this._evntNextBtnClick)
 
       this._evntBodyClick = (e) => {
-        if (!this._inner.contains(e.target) && this._el.querySelectorAll('.sidenav-inner > .sidenav-item.open').length) this.closeAll()
+        if (!this._inner.contains(e.target) && this._el.querySelectorAll('.sidenav-inner    .sidenav-item.open').length) this.closeAll()
       }
       document.body.addEventListener('click', this._evntBodyClick)
 

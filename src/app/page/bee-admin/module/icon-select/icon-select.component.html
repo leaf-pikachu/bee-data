@@ -6,11 +6,11 @@
 <ng-select [items]="elementState.items"
            [virtualScroll]="true"
            [loading]="loading"
-           bindLabel="title"
-           bindValue="thumbnailUrl"
+           bindLabel="code"
+           bindValue="code"
            (scroll)="onScroll($event)"
            (scrollToEnd)="onScrollToEnd()"
-           [placeholder]="this.elementState.placeholder"
+           [placeholder]="elementState.placeholder"
            [formControl]="beeRFC"
            [searchFn]="onSearch"
            [ngClass]="{
@@ -19,10 +19,10 @@
           }"
 >
   <ng-template ng-header-tmp>
-    <small class="form-text text-muted">Loaded {{photosBuffer.length}} of {{photos.length}}</small>
+    <small class="form-text text-muted">Loaded {{elementState.items.length}} of {{totalRecord}}</small>
   </ng-template>
   <ng-template ng-option-tmp let-item="item" let-index="index">
-    <b>{{index}}</b> {{item.title}}
+    <b><i class="{{item.code}}" ></i> </b> {{item.type}} <> {{item.code}}
   </ng-template>
 </ng-select>
 <bee-validate-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-validate-error-msg>

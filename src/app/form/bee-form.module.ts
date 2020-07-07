@@ -8,9 +8,10 @@ import { SelectModule } from '@bee/form/select/select.module';
 import { SwitchModule } from '@bee/form/switch/switch.module';
 import { TreeModule } from '@bee/form/tree/tree.module';
 import { TextareaModule } from '@bee/form/textarea/textarea.module';
+import { AutoConfigComponent } from './auto-config/auto-config.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [AutoConfigComponent],
   imports: [
     CommonModule,
     ValidateErrorMsgModule,
@@ -22,6 +23,7 @@ import { TextareaModule } from '@bee/form/textarea/textarea.module';
     TextareaModule
   ],
   exports: [
+    AutoConfigComponent,
     ValidateErrorMsgModule,
     ValidationModule,
     InputModule,

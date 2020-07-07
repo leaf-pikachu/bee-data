@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {FormBuilder, FormControl} from '@angular/forms';
 import UUID  from 'uuidjs'
 import { isString } from "ts-util-is";
+import {ElementState, elementStateSegment} from '@bee/form/bee-form-element';
 
 /**
  *  Value 'f' or 't'
@@ -12,20 +13,17 @@ import { isString } from "ts-util-is";
   styles: []
 })
 export class SwitchIconComponent implements OnInit {
+  @Input() elementState: ElementState;
   /**
    * Bee Reactive FormControl instance
    */
-  @Input() beeRFC: FormControl;
-  /**
-   *  label title
-   */
-  @Input() labelTitle: string;
-  @Input() name: string;
+  beeRFC: FormControl;
 
-  constructor() { }
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.name = this.name || UUID.generate();
+    this.beeRFC = elementStateSegment(this.formBuilder, this.elementState);
     this.beeRFC.setValue(this.beeRFC.value === 't' || this.beeRFC.value === true);
     this.beeRFC.valueChanges.subscribe(value => {
 

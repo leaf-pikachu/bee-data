@@ -36,6 +36,7 @@ import { SidenavModule } from '@bee/libs/sidenav/sidenav.module';
 // Services
 
 import { LayoutService } from './layout.service';
+import { LayoutMenuComponent } from './layout-menu/layout-menu.component';
 
 
 // *******************************************************************************
@@ -61,7 +62,8 @@ import { LayoutService } from './layout.service';
 
     LayoutNavbarComponent,
     LayoutSidenavComponent,
-    LayoutFooterComponent
+    LayoutFooterComponent,
+    LayoutMenuComponent,
   ],
   providers: [
     LayoutService

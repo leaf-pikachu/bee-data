@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { LayoutService } from '../layout.service';
+import {BeeHttpService} from '@bee/core/service/bee-http.service';
 
 @Component({
   selector: 'app-layout-without-sidenav',
@@ -10,7 +11,10 @@ export class LayoutWithoutSidenavComponent implements AfterViewInit, OnDestroy {
   // Prevent "blink" effect
   public initialized = false;
 
-  constructor(private layoutService: LayoutService) {}
+  menus: any[];
+  constructor(private layoutService: LayoutService) {
+
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

@@ -1,38 +1,42 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { BeeFormTools } from '@bee/config/validator/bee-form-tools';
 import { HttpClient } from '@angular/common/http';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {disableDebugTools} from '@angular/platform-browser';
+import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import { BeeHttpService } from '@bee/core/service/bee-http.service';
+import { ElementState, elementStateSegment } from '@bee/form/bee-form-element';
 @Component({
   selector: 'bee-module-parent-select',
   templateUrl: './module-parent-select.component.html',
   styleUrls: ['/src/vendor/libs/ng-select/ng-select.scss']
 })
-export class ModuleParentSelectComponent implements OnInit, OnDestroy {
+export class ModuleParentSelectComponent implements OnInit, OnChanges, OnDestroy {
+  ngOnChanges(changes: SimpleChanges): void {
+    let systemRowIdChange = changes['systemRowId'];
+    let moduleLevelChange = changes['moduleLevel'];
+
+    if ((systemRowIdChange && !systemRowIdChange.firstChange) ||
+      (moduleLevelChange && !moduleLevelChange.firstChange)) {
+        this.loadParentModules();
+    }
+
+  }
 
 
+  readonly requestUrl = '/admin/module/loadGrid'
   /**
    * NgForm instance
    */
   @Input() beeForm: NgForm;
+  @Input() elementState: ElementState;
+  @Input() systemRowId: number;
+  @Input() moduleLevel: number;
+  isRequired: boolean = false;
 
   /**
    * Bee Reactive FormControl instance
    */
-  @Input() beeRFC: FormControl;
-  /**
-   *  label title
-   */
-  @Input() labelTitle: string;
-  @Input() bindLabel: string;
-  @Input() bindValue: string;
-  @Input() placeholder: string;
-  @Input() color: string;
-  @Input() systemRowId: number;
-  @Input() moduleLevel: number;
-  isRequired: boolean = false;
-  items: any[];
+  beeRFC: FormControl;
 
   photos = [];
   photosBuffer = [];
@@ -40,7 +44,8 @@ export class ModuleParentSelectComponent implements OnInit, OnDestroy {
   numberOfItemsFromEndBeforeFetchingMore = 10;
   loading = false;
   searchEvent = new EventEmitter();
-  constructor(private http: HttpClient) {
+  totalRecord = 0;
+  constructor(private http: HttpClient, private $http: BeeHttpService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -49,6 +54,7 @@ export class ModuleParentSelectComponent implements OnInit, OnDestroy {
       this.photosBuffer = this.photos.slice(0, this.bufferSize);
     });
 
+    this.loadParentModules();
     this.initializeProperties();
 
     this.searchEvent.pipe(
@@ -59,15 +65,37 @@ export class ModuleParentSelectComponent implements OnInit, OnDestroy {
     console.log(`系统RowId:${this.systemRowId}, 模块等级： ${this.moduleLevel}`);
   }
 
+  loadParentModules() {
+    this.$http.post(this.requestUrl, {
+      pageSize: this.bufferSize,
+      pageNo: 1,
+      filters: [{
+        id: 1,
+        prefix: 'and',
+        field: 'systemRowId',
+        mode: 'condition',
+        type: 'eq',
+        value: this.systemRowId
+      }, {
+        id: 1,
+        prefix: 'and',
+        field: 'moduleLevel',
+        mode: 'condition',
+        type: 'eq',
+        value: this.moduleLevel -1
+      }]
+    }, false).subscribe((value: any) => {
+      this.totalRecord = value.totalRecord;
+      this.elementState.items = value.result;
+      console.log(value)
+    });
+  }
+
   ngOnDestroy(): void {
     this.searchEvent.unsubscribe();
   }
   protected initializeProperties(): void {
-    this.placeholder = this.placeholder || '';
-    this.bindValue = this.bindValue || 'id';
-    this.bindLabel = this.bindLabel || 'text';
-    // this.maxLength = this.maxLength || null;
-    // this.color = this.color || MaterialColorConfig.basic;
+    this.beeRFC = elementStateSegment(this.formBuilder, this.elementState);
     this.isRequired = BeeFormTools.checkRequired(this.beeRFC);
   }
 

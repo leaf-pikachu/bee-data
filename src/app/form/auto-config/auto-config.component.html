@@ -1,0 +1,19 @@
+<ng-container *ngFor="let key of formRows(elementGroup)">
+  <div class="form-row">
+    <ng-container *ngFor="let element of elementGroup[key]">
+      <ng-container [ngSwitch]="element.type">
+<!--        <bee-input *ngSwitchCase="'bee-input'"-->
+<!--                   [beeForm]="beeForm"-->
+<!--                   [beeRFC]="beeFg.controls[element.key]"-->
+<!--                   [labelTitle]="element.title" class="form-group col-md-6"></bee-input>-->
+<!--        <bee-select *ngSwitchCase="'bee-select'"-->
+<!--                    [beeForm]="beeForm"-->
+<!--                    [beeRFC]="beeFg.controls[element.key]"-->
+<!--                    [labelTitle]="element.title"-->
+<!--                    [items]="element.items"-->
+<!--                    [bindLabel]="element.bindLabel"-->
+<!--                    [bindValue]="element.bindValue" class="form-group col-md-6"></bee-select>-->
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>

@@ -33,7 +33,7 @@ body {
 @include appwork-sidenav-variant('.bg-sidenav-theme', #222, $color: #999, $active-color: #fff, $border: rgba(255, 255, 255, .06));
 
 .bg-sidenav-theme {
-  .sidenav-inner > .sidenav-item.active > .sidenav-link .sidenav-icon {
+  .sidenav-inner    .sidenav-item.active > .sidenav-link .sidenav-icon {
     color: $primary-color !important;
   }
   .sidenav-item.active > .sidenav-link:not(.sidenav-toggle) {
