@@ -1,0 +1,8 @@
+<ng-container *ngFor="let menu of menus">
+  <sidenav-router-link *ngIf="menu.childMenus.length < 1; else hasChildMenusTemp"  [icon] = "menu.icon" [route]="menu.clientUrl" [active]="isActive(menu.clientUrl)">{{menu.title}}</sidenav-router-link>
+  <ng-template #hasChildMenusTemp>
+    <sidenav-menu  [icon] = "menu.icon" [text]="menu.title" [active]="isMenuActive(menu.clientUrl)" [open]="isMenuOpen(menu.clientUrl)">
+      <bee-layout-menu [menus]="menu.childMenus"></bee-layout-menu>
+    </sidenav-menu>
+  </ng-template>
+</ng-container>
