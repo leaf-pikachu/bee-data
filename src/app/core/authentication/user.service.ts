@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map'
 
 import { SystemWebSocketService } from '@bee/core/websocket/system-websocket.service';
 import { NotificationService } from '@bee/core/notifications/notification.service';
-import { BeeHttpStatus } from '@bee/config/request/bee-http-status';
+import { BeeHttpStatus } from '@bee/core/config/request/bee-http-status';
 
 const defaultUser = {
   isLogin: false

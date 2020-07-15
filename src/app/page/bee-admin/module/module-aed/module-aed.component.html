@@ -1,0 +1,50 @@
+<form class="card md-4" #form="ngForm" [formGroup]="aeFG" (ngSubmit)="aedSave()" novalidate>
+  <h5 class="card-header">
+    系统模块{{operationType?.desc}}
+  </h5>
+  <div class="card-body">
+    <!--    <bee-auto-config [beeForm]="form" [elements]="formElements" [beeFg]="aeFG"></bee-auto-config>-->
+    <div class="form-row">
+      <bee-input [beeForm]="aeFG" [elementState]="formElementStates.orderNum" class="form-group col-md-6"></bee-input>
+      <bee-select [beeForm]="form" [elementState]="formElementStates.systemRowId" class="form-group col-md-6"></bee-select>
+    </div>
+    <div class="form-row">
+      <bee-select [beeForm]="form" [elementState]="formElementStates.moduleLevel" class="form-group col-md-6"></bee-select>
+      <bee-module-parent-select *ngIf="parentModuleShow"
+                                [beeForm]="form"
+                                [elementState]="formElementStates.parentModuleRowId"
+                                [systemRowId]="aeFG.controls.systemRowId.value"
+                                [moduleLevel]="aeFG.controls.moduleLevel.value" class="form-group col-md-6" ></bee-module-parent-select>
+    </div>
+    <div class="form-row">
+      <bee-input [beeForm]="form" [elementState]="formElementStates.enName" class="form-group col-md-6"></bee-input>
+      <bee-input [beeForm]="form" [elementState]="formElementStates.chName" class="form-group col-md-6"></bee-input>
+    </div>
+    <div class="form-row">
+      <bee-icon-select [beeForm]="form" [elementState]="formElementStates.icon"  class="form-group col-md-4"></bee-icon-select>
+      <bee-input [beeForm]="form" [elementState]="formElementStates.serviceUrl" class="form-group col-md-4"></bee-input>
+      <bee-input [beeForm]="form" [elementState]="formElementStates.clientUrl" class="form-group col-md-4"></bee-input>
+      <bee-select [beeForm]="form" [elementState]="formElementStates.listPageType" class="form-group col-md-4"></bee-select>
+      <bee-select [beeForm]="form" [elementState]="formElementStates.editPageType" class="form-group col-md-4">
+
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+          <b ><i style="min-width: 30px;" class="{{item.icon}}"></i></b>1000 -10000
+        </ng-template>
+      </bee-select>
+    </div>
+    <div class="form-row">
+      <bee-switch-icon [elementState]="formElementStates.mainModuleSwitch"  class="form-group col-md-4"></bee-switch-icon>
+      <bee-switch-icon [elementState]="formElementStates.showSwitch"  class="form-group col-md-4"></bee-switch-icon>
+      <bee-switch-icon [elementState]="formElementStates.toolbarShowSwitch" class="form-group col-md-4"></bee-switch-icon>
+      <bee-switch-icon [elementState]="formElementStates.operationShowSwitch" class="form-group col-md-2"></bee-switch-icon>
+      <bee-switch-icon [elementState]="formElementStates.otherOperationShowSwitch" class="form-group col-md-2"></bee-switch-icon>
+    </div>
+
+    <bee-textarea [beeForm]="form" [elementState]="formElementStates.dataDesc" rows="7" class="form-group"></bee-textarea>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i>保存</button>
+    <button type="reset"  class="btn btn-warning" (click)="aedReset()">重置</button>
+    <button type="button" class="btn btn-default" (click)="aedBreak()" >返回</button>
+  </div>
+</form>

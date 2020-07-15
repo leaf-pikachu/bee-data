@@ -1,8 +1,4 @@
-<label class="form-label">
-  <span *ngIf="isRequired" class="text-danger"><i class="fa fa-asterisk"></i></span>
-  {{elementState.title}}
-</label>
-
+<bee-label [title]="elementState.title" [required]="isRequired"></bee-label>
 <ng-select [items]="elementState.items"
            [virtualScroll]="true"
            [loading]="loading"
@@ -12,17 +8,23 @@
            (scrollToEnd)="onScrollToEnd()"
            [placeholder]="elementState.placeholder"
            [formControl]="beeRFC"
-           [searchFn]="onSearch"
+           [typeahead]="searchEvent"
+           typeToSearchText="可搜索"
            [ngClass]="{
             'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),
             'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)
           }"
 >
+  <ng-template ng-label-tmp let-item="item">
+    <b><i style="min-width: 30px;" class="{{item.code}}" ></i> </b> {{item.code}}
+  </ng-template>
   <ng-template ng-header-tmp>
-    <small class="form-text text-muted">Loaded {{elementState.items.length}} of {{totalRecord}}</small>
   </ng-template>
   <ng-template ng-option-tmp let-item="item" let-index="index">
-    <b><i class="{{item.code}}" ></i> </b> {{item.type}} <> {{item.code}}
+    <b><i style="min-width: 30px;" class="{{item.code}}" ></i> </b> {{item.type}} <> {{item.code}}
+  </ng-template>
+  <ng-template ng-footer-tmp>
+    <small class="form-text text-muted">Loaded {{elementState.items.length}} of {{totalRecord}}</small>
   </ng-template>
 </ng-select>
-<bee-validate-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-validate-error-msg>
+<bee-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-error-msg>

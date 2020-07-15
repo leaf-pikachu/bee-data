@@ -1,0 +1,73 @@
+<div class="card">
+  <bee-toolbar [columns]="gridTableColumns" (showColumnsEvent)="tableColumns = $event"></bee-toolbar>
+  <div class="card-ngx-datatable table-responsive" >
+    <ngx-datatable class="mb-0 ngx-datatable fixed-header virtualized selectable cell-selection" style="min-height: 180px;"
+                   selectionType="checkbox"
+                   [columnMode]="gridSupportInstance.columnMode"
+                   [columns]="tableColumns"
+                   [externalSorting]="gridSupportInstance.externalSorting"
+                   [footerHeight]="gridSupportInstance.footerHeight"
+                   [loadingIndicator]="gridSupportInstance.loadingIndicator"
+                   [reorderable]="gridSupportInstance.reOrderAble"
+                   [rowHeight]="40"
+                   [rows]="gridSupportInstance.loadSetting.page.result"
+                   [sorts]="gridSupportInstance.loadSetting.sorts"
+                   [sortType]="gridSupportInstance.sortType"
+                   (sort)="gridSupportInstance.sort($event)">
+
+      <ngx-datatable-footer>
+        <ng-template ngx-datatable-footer-template >
+          <div class="row col-md-12" style="padding: 0">
+            <div class="col-md-8 ml-0" >
+              <ngb-pagination #pagination
+                              size="sm"
+                              [collectionSize]="gridSupportInstance.loadSetting.page.totalRecord"
+                              (pageChange)="gridSupportInstance.pageChange($event)"
+                              [(page)]="gridSupportInstance.loadSetting.page.currentPageNo"
+                              [boundaryLinks]="true"
+                              [rotate]="true"
+                              [ellipses]="false"
+                              [maxSize]="8"
+                              [pageSize]="gridSupportInstance.loadSetting.page.pageSize">
+                <ng-template ngbPaginationFirst>
+                  首页
+                </ng-template>
+                <ng-template ngbPaginationNext>
+                  下一页
+                </ng-template>
+                <ng-template ngbPaginationLast>
+                  尾页
+                </ng-template>
+                <ng-template ngbPaginationPrevious>
+                  上一页
+                </ng-template>
+              </ngb-pagination>
+            </div>
+            <div class="col-md-4 page-count ">
+              <div class="float-md-right">
+                <span class="badge badge-dot badge-primary"></span> {{pagination.collectionSize}}条&nbsp;&nbsp;
+                <span class="badge badge-dot badge-success"></span> {{pagination.pageCount}}页&nbsp;&nbsp;
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-footer>
+    </ngx-datatable>
+  </div>
+</div>
+
+<ng-template #operationTemplate let-row="row" let-value="value">
+  <button [class]="gridSupportInstance.gridBasicOperation.details.btnClass" (click)="gridSupportInstance.rowDetails(row)" [ngbTooltip]="gridSupportInstance.gridBasicOperation.details.title">
+    <i [class]="gridSupportInstance.gridBasicOperation.details.iconClass"></i>
+  </button>
+  <button [class]="gridSupportInstance.gridBasicOperation.edit.btnClass" (click)="gridSupportInstance.editRow(row)" [ngbTooltip]="gridSupportInstance.gridBasicOperation.edit.title">
+    <i [class]="gridSupportInstance.gridBasicOperation.edit.iconClass"></i>
+  </button>
+  <button [class]="gridSupportInstance.gridBasicOperation.deleted.btnClass" [swal]="gridSupportInstance.deletedConfirm(row)" (confirm)="gridSupportInstance.deletedRow(row)" [ngbTooltip]="gridSupportInstance.gridBasicOperation.deleted.title">
+    <i [class]="gridSupportInstance.gridBasicOperation.deleted.iconClass"></i>
+  </button>
+
+  <button *ngIf="moreOperationTemplate" [contextMenu]="moreOperationTemplate" [contextMenuSubject]="row" class="btn btn-xs icon-btn btn-outline-danger borderless hide-arrow dropdown-toggle">
+    <i class="fas fa-ellipsis-v"></i>
+  </button>
+</ng-template>

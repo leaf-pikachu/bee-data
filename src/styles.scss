@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import './bee';
+@import 'ngx-datatable/ngx-datatable';
+@import 'ngx-sweetalert2/ngx-sweetalert2';
+@import 'ngx-toastr/ngx-toastr';
+
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {

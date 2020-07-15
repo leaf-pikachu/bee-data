@@ -1,0 +1,15 @@
+<bee-label [title]="elementState.title" [name]="elementState.key" [required]="isRequired"></bee-label>
+
+<ng-select
+  [items]="elementState.items"
+  [bindLabel]="elementState.bindLabel"
+  [bindValue]="elementState.bindValue"
+  [placeholder]="elementState.placeholder"
+  [formControl]="formControl"
+  [ngClass]="{
+  'is-valid': formControl.valid && (beeForm.submitted || formControl.dirty || formControl.touched),
+  'is-invalid': formControl.invalid && (beeForm.submitted || formControl.dirty || formControl.touched)
+  }"
+>
+</ng-select>
+<bee-error-msg [title]="elementState.title" [validateFormControl]="formControl" [validateForm]="beeForm"></bee-error-msg>

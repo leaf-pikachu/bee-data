@@ -18,3 +18,4 @@
 declare const layui: Layui.LayuiInstance;
 declare const layer: Layui.ILayerStatic;
 declare const laydate: Layui.ILayDateStatic;
+declare const laytable: Layui.ITableStatic;

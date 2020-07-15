@@ -2,19 +2,7 @@
   <span class="text-muted font-weight-light">Icons /</span> Font Awesome 5
 </h4>
 
-<hr class="container-m-nx border-light mt-0 mb-4">
-
-<div class="py-2 my-4 mx-auto" style="max-width:300px">
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text"><i class="ion ion-ios-search"></i></span>
-    </div>
-    <input type="text" class="form-control" placeholder="Search..." (input)="search($event)">
-  </div>
-</div>
-
-<div class="text-center">
-  <div *ngFor="let icon of icons" [attr.data-title]="icon.code" class="card icon-example d-inline-flex justify-content-center align-items-center my-2 mx-2">
-    <i class="d-block" [ngClass]="icon.code"></i>
-  </div>
-</div>
+<bee-gird *ngIf="!showAED" [gridSupportInstance]="this"></bee-gird>
+<ng-template #moduleIconTemplate let-value="value">
+  <i [class]="value" ngbTooltip="{{value}}"></i>
+</ng-template>

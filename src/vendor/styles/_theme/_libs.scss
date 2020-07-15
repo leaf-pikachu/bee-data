@@ -1,8 +1,7 @@
 // -------------------------------------------------------------------------------
 // Imports
 @import "ng2-nouislider/mixins";
-@import "ngx-toastr/ngx-toastr";
-@import "ngx-datatable/ngx-datatable";
+@import "ngx-datatable/mixins";
 //@import "~src/vendor/libs/quill/mixins";
 //@import "~src/vendor/libs/ngx-dropzone-wrapper/mixins";
 //@import "~src/vendor/libs/ngx-swiper-wrapper/mixins";
@@ -13,7 +12,7 @@
 //@import "~src/vendor/libs/ngx-datatable/mixins";
 //@import "~src/vendor/libs/ng2-archwizard/mixins";
 //@import "~src/vendor/libs/angular-calendar/mixins";
-//@import "~src/vendor/libs/ngx-sweetalert2/mixins";
+@import "ngx-sweetalert2/mixins";
 @import 'ng-grid/ng-grid';
 
 // -------------------------------------------------------------------------------
@@ -28,10 +27,10 @@
   //@include plyr-theme($background, $color);
   @include ng-select-theme($background, $color);
   //@include ngx-chips-theme($background, $color);
-  //@include ngx-datatable-theme($background, $color);
+  @include ngx-datatable-theme($background, $color);
   //@include ng2-archwizard-theme($background);
   //@include angular-calendar-theme($background, $color);
-  //@include sweetalert2-theme($background, $color);
+  @include sweetalert2-theme($background, $color);
   @include ag-grid-theme($background);
 }
 
@@ -44,9 +43,9 @@
   //@include plyr-theme($background, $color);
   //@include material-ng-select-theme($background, $color);
   //@include ngx-chips-theme($background, $color);
-  //@include ngx-datatable-theme($background, $color);
+  @include ngx-datatable-theme($background, $color);
   //@include ng2-archwizard-theme($background);
   //@include angular-calendar-theme($background, $color);
-  //@include sweetalert2-theme($background, $color);
+  @include sweetalert2-theme($background, $color);
   @include ag-grid-theme($background);
 }

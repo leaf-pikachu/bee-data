@@ -1,74 +1,48 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { BlockUIService } from 'ng-block-ui';
 import { CookieService } from 'ngx-cookie-service';
-import * as util from 'util';
 import { NotificationService } from '@bee/core/notifications/notification.service';
 import { BeeService } from '@bee/core/service/bee.service';
+import UUIDClass from 'uuidjs';
 
 @Component({
   selector: 'app-home1',
   templateUrl: './home1.component.html'
 })
-export class Home1Component {
+export class Home1Component implements OnInit, AfterViewInit{
 
-  beeEvents;
-  table: Layui.ITableStatic;
   constructor(private beeService: BeeService,
               private http: HttpClient,
               private cookieService: CookieService,
               private notificationService: NotificationService,
-              private bus: BlockUIService,) {
+              private bus: BlockUIService) {
     this.beeService.pageTitle = 'Home';
     this.bus.start("xixixixi", "hahahah");
-
-    util.log('nihao {}');
-    // util.types.isAnyArrayBuffer(this.cookieService);
-    cookieService.set('mmall_login_token', '03aafbac-8a4f-467a-a18c-302c38310f25');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'mmall_login_token' : '03aafbac-8a4f-467a-a18c-302c38310f25'
-      })
-    };
-    this.http.get("/data/manage/product/list.do", httpOptions).subscribe((value:any) => {
-      this.rowData = value.data.list;
-      this.notificationService.success('数据加载成功', '远程服务');
-    });
-
-    layui.use(['bee', 'table', 'form', 'soulTable'], ()=> {
-      this.beeEvents = layui.bee;
-      this.table = layui.table;
-
-      let table = this.table;
-      table.render({
-        id: 'table1'
-        ,elem: '#table1'
-        ,url: 'https://soultable.saodiyang.com/back/poetry/dataGrid'
-        ,height: 400
-        ,limit: 20
-        ,page: true
-        ,toolbar: true
-        ,cols: [[
-          {type: 'checkbox', fixed: 'left'},
-          {field: 'title', title: '诗词', fixed:'left', width: 200, sort: true, filter: true},
-          {field: 'dynasty', title: '朝代',fixed: 'left', width: 100, sort: true, filter: true},
-          {field: 'author', title: '作者', width: 165 , filter: true},
-          {field: 'content', title: '内容', width: 123, filter: true},
-          {field: 'type', title: '类型', width: 112,  filter: {split:','}, sort:true},
-          {field: 'heat', title: '点赞数', width: 112,  filter: true, sort:true},
-          {field: 'createTime', title: '录入时间', width: 165,fixed:'right',  filter: {type: 'date[yyyy-MM-dd HH:mm:ss]'}, sort:true},
-        ]],
-        done: function() {
-          layui.soulTable.render(this);
-        }
-      });
-
-      table.on('checkbox(layTableAllChoose)', function(obj){
-        console.log(obj)
-      });
-    });
   }
+
+  ngAfterViewInit(): void {
+    // this.layuiService.initTableGrid(this.gridTableId, 'https://soultable.saodiyang.com/back/poetry/dataGrid',
+    //   [
+    //     {type: 'checkbox', fixed: 'left'},
+    //     {field: 'title', title: '诗词', fixed:'left', width: 200, sort: true, filter: true},
+    //     {field: 'dynasty', title: '朝代',fixed: 'left', width: 100, sort: true, filter: true},
+    //     {field: 'author', title: '作者', width: 165 , filter: true},
+    //     {field: 'content', title: '内容', width: 123, filter: true},
+    //     {field: 'type', title: '类型', width: 112,  filter: {split:','}, sort:true},
+    //     {field: 'heat', title: '点赞数', width: 112,  filter: true, sort:true},
+    //     {field: 'createTime', title: '录入时间', width: 165,fixed:'right',  filter: {type: 'date[yyyy-MM-dd HH:mm:ss]'}, sort:true},
+    //   ]);
+
+  }
+  ngOnInit(): void {
+
+  }
+
+  gridTableId = UUIDClass.generate();
+  table: Layui.ITableStatic;
+
 
   columnDefs = [
     {headerName: '商品编码', field: 'categoryId' },

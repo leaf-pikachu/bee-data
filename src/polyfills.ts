@@ -92,5 +92,7 @@ import '@angular/localize/init'
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-require('jquery')
+import * as jQuery from 'jquery';
+window['jQuery'] = jQuery;
+window['$'] = jQuery;
 

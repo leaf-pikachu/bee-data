@@ -1,0 +1,16 @@
+<bee-label [title]="elementState.title" [name]="elementState.key" [required]="isRequired"></bee-label>
+
+<textarea autosize
+  [id]="elementState.key"
+  [name]="elementState.key"
+  [formControl]="beeRFC"
+  [placeholder]="elementState.placeholder"
+  class="form-control {{elementState.color}}"
+  [rows]="rows"
+  [ngClass]="
+  {
+  'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),
+  'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)
+  }"
+></textarea>
+<bee-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-error-msg>

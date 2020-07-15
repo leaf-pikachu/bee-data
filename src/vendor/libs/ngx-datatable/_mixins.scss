@@ -1,4 +1,4 @@
-@import "~src/vendor/styles/_appwork/functions";
+@import "_appwork/functions";
 
 @mixin ngx-datatable-theme($background, $color: null) {
   $color: if($color, $color, yiq($background));

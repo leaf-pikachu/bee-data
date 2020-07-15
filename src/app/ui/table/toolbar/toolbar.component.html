@@ -1,0 +1,26 @@
+<div class="card-header" >
+  <div class="form-row">
+    <div class="col-md-6 btn-toolbar mb-1">
+      <div ngbDropdown hoverDropdown>
+          <span ngbDropdownToggle ngbTooltip="更多设置" class="btn btn-default hide-arrow">
+            <i class="ion ion-md-more"></i>
+          </span>
+        <div ngbDropdownMenu>
+          <bee-toolbar-table-column [columns]="columns" (showColumnsEvent)="showColumnsEvent.emit($event)"></bee-toolbar-table-column>
+          <div class="dropdown-item">
+            <i class="far fa-list-alt" style="min-width: 25px;"></i>自定义查询
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <input class="form-control">
+        <div class="input-group-append">
+          <span class="btn btn-primary input-group-text"><i class="ion ion-ios-search"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

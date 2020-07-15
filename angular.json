@@ -12,8 +12,8 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "inlineStyle": true,
-          "spec": false
+          "inlineStyle": false,
+          "spec": true
         }
       },
       "architect": {
@@ -33,6 +33,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "src/assets",
                 "src/vendor/libs",
                 "src/vendor/styles"
               ]

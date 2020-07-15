@@ -1,0 +1,23 @@
+<label class="form-label">
+  <span *ngIf="isRequired" class="text-danger"><i class="fa fa-asterisk"></i></span>
+  {{labelTitle}}
+</label>
+<!--formControlName="{{formControlName}}"-->
+<!--<tree-select-->
+<!--  [items]="items"-->
+<!--  [idField]="bindValue"-->
+<!--  [textField]="bindLabel"-->
+<!--  [childrenField]="bindChildren"-->
+<!--  [multiple]="multiple"-->
+<!--  [formControl]="beeRFC"-->
+<!--  [filterPlaceholder]="filterPlaceholder"-->
+<!--  [allowParentSelection]="allowParentSelection"-->
+<!--  [allowFilter]="allowFilter"-->
+<!--  [disabled]="disabled"-->
+<!--  [expandMode]="expandMode"-->
+<!--  [filterCaseSensitive]="filterCaseSensitive"-->
+<!--&gt;-->
+
+<!--</tree-select>-->
+
+<bee-error-msg [title]="labelTitle" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-error-msg>

@@ -2,8 +2,9 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core
 import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { BeeHttpService } from '@bee/core/service/bee-http.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { BeeFormTools } from '@bee/config/validator/bee-form-tools';
-import {ElementState, elementStateSegment} from '@bee/form/bee-form-element';
+import { BeeFormTools } from '@bee/core/config/validator/bee-form-tools';
+import {ElementState, elementStateSegment} from '@bee/ui/form/bee-form-element';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'bee-icon-select',
@@ -18,24 +19,20 @@ export class IconSelectComponent implements OnInit, OnDestroy {
    * NgForm instance
    */
   @Input() beeForm: NgForm;
-
   @Input() elementState: ElementState;
+  @Input() systemRowId: number;
+  @Input() moduleLevel: number;
 
   /**
    * Bee Reactive FormControl instance
    */
   beeRFC: FormControl;
-
-  @Input() systemRowId: number;
-  @Input() moduleLevel: number;
   isRequired: boolean = false;
-  photos = [];
-  photosBuffer = [];
   pageNo = 0;
   bufferSize = 50;
   numberOfItemsFromEndBeforeFetchingMore = 10;
   loading = false;
-  searchEvent = new EventEmitter();
+  searchEvent = new Subject<string>();
   totalRecord = 0;
   searchText = '';
   constructor(private $http: BeeHttpService, private formBuilder: FormBuilder) {
@@ -63,6 +60,9 @@ export class IconSelectComponent implements OnInit, OnDestroy {
   }
 
   onScrollToEnd() {
+    if (this.loading || this.totalRecord <= this.elementState.items?.length) {
+      return;
+    }
     this.fetchMore();
   }
 
@@ -71,13 +71,13 @@ export class IconSelectComponent implements OnInit, OnDestroy {
    * @param end
    */
   onScroll({ end }) {
-    if (this.loading || this.photos.length <= this.photosBuffer.length) {
+    if (this.loading || this.totalRecord <= this.elementState.items?.length) {
       return;
     }
-
-    if (end + this.numberOfItemsFromEndBeforeFetchingMore >= this.photosBuffer.length) {
+    if (end + this.numberOfItemsFromEndBeforeFetchingMore >= this.elementState.items?.length) {
       this.fetchMore();
     }
+
   }
 
   private fetchMore() {
@@ -107,15 +107,6 @@ export class IconSelectComponent implements OnInit, OnDestroy {
       this.loading = false;
       console.log(value)
     });
-  }
-
-
-  /**
-   * 搜索
-   * @param searchText 值
-   */
-  onSearch =  (searchText: string) => {
-    this.searchEvent.emit(searchText);
   }
 
 }

@@ -1,0 +1,23 @@
+<div class="dropdown-toggle">
+  <div class="dropdown-item">
+    <i class="far fa-list-alt" style="min-width: 25px;"></i>表格列
+  </div>
+  <div class="dropdown-menu">
+    <ng-container *ngFor="let column of columns" >
+      <label class="ml-2 custom-control custom-checkbox" >
+        <input type="checkbox" class="custom-control-input"  *ngIf="column.disableChange; else disableTemplate"  disabled
+               [ngModel]="column.showColumn">
+        <ng-template #disableTemplate>
+          <input type="checkbox" class="custom-control-input"
+                 [ngModel]="column.showColumn"
+                 (change)="toolbarColumnChange.emit({
+                      event:$event,
+                      item: column
+                      })"
+          >
+        </ng-template>
+        <span class="custom-control-label">{{column.name}}</span>
+      </label>
+    </ng-container>
+  </div>
+</div>

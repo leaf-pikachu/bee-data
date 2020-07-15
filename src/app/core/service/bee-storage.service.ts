@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { BeeDataSecurity } from '@bee/config/security/bee-data-security';
+import { BeeDataSecurity } from '@bee/core/config/security/bee-data-security';
 
 @Injectable()
 export class BeeStorageService {

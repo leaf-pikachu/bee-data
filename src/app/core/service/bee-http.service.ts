@@ -9,9 +9,9 @@ import { catchError, finalize, filter, map, timeout } from 'rxjs/operators';
 import { BeeStorageService } from '@bee/core/service/bee-storage.service';
 import { environment } from '@bee/environment';
 import { NotificationService } from '@bee/core/notifications/notification.service';
-import { HttpRequestMethod } from '@bee/config/request/http-request-method';
-import { BeeConfig } from '@bee/config/bee-config';
-import { BeeHttpStatus } from '@bee/config/request/bee-http-status';
+import { HttpRequestMethod } from '@bee/core/config/request/http-request-method';
+import { BeeConfig } from '@bee/core/config/bee-config';
+import { BeeHttpStatus } from '@bee/core/config/request/bee-http-status';
 
 
 @Injectable()

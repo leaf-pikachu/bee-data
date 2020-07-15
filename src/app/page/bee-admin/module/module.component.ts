@@ -1,134 +1,64 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
-import { AedSupport } from '@bee/config/aed/aed-support';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
 import { BeeHttpService } from '@bee/core/service/bee-http.service';
-import { BeeDictionaryConstantService } from '@bee/core/service/bee-dictionary-constant.service';
-import { UniversalValidators } from 'ngx-validators';
-import { BeeOperationType } from '@bee/config/settings/bee-operation-type';
-import { BeeRequired } from '@bee/config/validator/bee-required';
+import { GridSupport } from '@bee/core/config/grid/grid-support';
 
 @Component({
   selector: 'app-module',
   templateUrl: './module.component.html',
   styleUrls: ['./module.component.scss']
 })
-export class ModuleComponent extends AedSupport {
+export class ModuleComponent extends GridSupport {
 
-  constructor($http: BeeHttpService, private ct: BeeDictionaryConstantService, private fb: FormBuilder) {
-    super($http, '/system/module/loadInfo', '/admin/module/save');
-    this.operationType = BeeOperationType.ADD;
+  @ViewChild('moduleIconTemplate', {static: true})
+  moduleIconTemplate: TemplateRef<any>
+
+  constructor(beeHttpService: BeeHttpService) {
+    super(beeHttpService, 'admin/module/loadGrid', '');
   }
 
-  formGroupSettings() {
-    this.setFormElementState([{
-      key: 'orderNum',
-      title: '排序号',
-      formState: this.formState(null, false),
-      validatorOrOpts: [BeeRequired.requiredFlag, UniversalValidators.isNumber]
-    } , {
-      key: 'systemRowId',
-      title: '所属系统',
-      formState: this.formState(null, false),
-      bindLabel: 'chName',
-      bindValue: 'rowId',
-      items: [{chName: 'bee-admin', rowId: 10000}],
-      validatorOrOpts: BeeRequired.requiredSelect()
-    } , {
-      key: 'moduleLevel',
-      title: '模块级别',
-      formState: this.formState(null, true),
-      items: [{text: '一级模块', id: 1}, {text: '二级模块', id: 2}, {text: '三级模块', id: 3}],
-      validatorOrOpts:  [BeeRequired.requiredSelect(), UniversalValidators.isNumber]
-    } , {
-      key: 'parentModuleRowId',
-      title: '上级模块',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredSelect(), UniversalValidators.isNumber]
-    } , {
-      key: 'enName',
-      title: '英文名',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredSelect(), UniversalValidators.maxLength(150)]
-    } , {
-      key: 'chName',
-      title: '中文名',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredSelect(), UniversalValidators.maxLength(150)]
-    } , {
-      key: 'icon',
-      title: '菜单Icon',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredSelect(), UniversalValidators.maxLength(50)]
-    } , {
-      key: 'serviceUrl',
-      title: 'Service Url',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredFlag, UniversalValidators.maxLength(50)]
-    } , {
-      key: 'clientUrl',
-      title: 'Client Url',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredFlag, UniversalValidators.maxLength(50)]
-    } , {
-      key: 'listPageType',
-      title: 'Grid页面显示方式',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredSelect()],
-      items: [{chName: '嵌套', enName: 'SPT-QT'}, {chName: '弹框', enName: 'SPT-TK'}]
-    } , {
-      key: 'editPageType',
-      title: 'AED页面显示方式',
-      formState: this.formState(null, true),
-      validatorOrOpts:  [BeeRequired.requiredSelect()],
-      items: [{chName: '嵌套', enName: 'SPT-QT'}, {chName: '弹框', enName: 'SPT-TK'}]
-    } , {
-      key: 'mainModuleSwitch',
-      title: '主模块',
-      formState: this.formState('t', true)
-    } , {
-      key: 'showSwitch',
-      title: '菜单模块',
-      formState: this.formState('t', true)
-    } , {
-      key: 'toolbarShowSwitch',
-      title: '工具栏',
-      formState: this.formState('t', true)
-    } , {
-      key: 'operationShowSwitch',
-      title: '基本操作',
-      formState: this.formState('t', true)
-    } , {
-      key: 'otherOperationShowSwitch',
-      title: '其他操作',
-      formState: this.formState('t', true)
-    } , {
-      key: 'moduleDesc',
-      title: '模块描述',
-      formState: this.formState(null, false)
-    }]);
+  initColumns() {
+    this.columns = [{
+      name: '模块级别',
+      prop: 'moduleLevel',
+      sortable: true,
+      showColumn: false,
+      disableChange: true
+    }, {
+      name: '系统名称',
+      prop: 'systemRowId',
+      sortable: false,
+      showColumn: true,
+    }, {
+      name: '上级模块',
+      prop: 'parentModuleRowId',
+      sortable: false,
+      showColumn: true
+    }, {
+      name: '模块英文名称',
+      prop: 'enName',
+      showColumn: true,
+      sortable: false
+    }, {
+      name: '模块中文名称',
+      prop: 'chName',
+      showColumn: true,
+      sortable: false
+    }, {
+      name: 'Icon',
+      prop: 'icon',
+      sortable: false,
+      showColumn: true,
+      cellTemplate: this.moduleIconTemplate
+    }, {
+      name: '主模块',
+      prop: 'mainModule',
+      sortable: false,
+      showColumn: true
+    }, {
+      name: '菜单显示',
+      prop: 'showModule',
+      sortable: false,
+      showColumn: true
+    }];
   }
-
-  dropDownListSettings() {
-
-  }
-
-  watchControlSettings() {
-    this.setElementWatch('systemRowId', value => this.watchParentModule());
-    this.setElementWatch('moduleLevel', value => this.watchParentModule());
-  }
-
-  parentModuleShow: boolean = false;
-  watchParentModule() {
-    let moduleLevel = this.aeFG.controls.moduleLevel.value || 0;
-    let systemRowId = this.aeFG.controls.systemRowId.value || 0;
-
-    if (moduleLevel > 1 && systemRowId >0 && !this.parentModuleShow) {
-      this.parentModuleShow = !this.parentModuleShow;
-    } else if (this.parentModuleShow && (moduleLevel <= 1 || systemRowId <= 0)) {
-      this.parentModuleShow = false;
-      this.aeFG.removeControl('parentModuleRowId');
-    }
-  }
-
 }

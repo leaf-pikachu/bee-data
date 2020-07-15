@@ -1,26 +1,17 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
-import { BeeFormTools } from '@bee/config/validator/bee-form-tools';
+import { BeeFormTools } from '@bee/core/config/validator/bee-form-tools';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import { BeeHttpService } from '@bee/core/service/bee-http.service';
-import { ElementState, elementStateSegment } from '@bee/form/bee-form-element';
+import { ElementState, elementStateSegment } from '@bee/ui/form/bee-form-element';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'bee-module-parent-select',
   templateUrl: './module-parent-select.component.html',
   styleUrls: ['/src/vendor/libs/ng-select/ng-select.scss']
 })
 export class ModuleParentSelectComponent implements OnInit, OnChanges, OnDestroy {
-  ngOnChanges(changes: SimpleChanges): void {
-    let systemRowIdChange = changes['systemRowId'];
-    let moduleLevelChange = changes['moduleLevel'];
-
-    if ((systemRowIdChange && !systemRowIdChange.firstChange) ||
-      (moduleLevelChange && !moduleLevelChange.firstChange)) {
-        this.loadParentModules();
-    }
-
-  }
 
 
   readonly requestUrl = '/admin/module/loadGrid'
@@ -31,29 +22,22 @@ export class ModuleParentSelectComponent implements OnInit, OnChanges, OnDestroy
   @Input() elementState: ElementState;
   @Input() systemRowId: number;
   @Input() moduleLevel: number;
+
+  searchEvent = new Subject<string>();
   isRequired: boolean = false;
 
   /**
    * Bee Reactive FormControl instance
    */
   beeRFC: FormControl;
-
-  photos = [];
-  photosBuffer = [];
   bufferSize = 50;
   numberOfItemsFromEndBeforeFetchingMore = 10;
   loading = false;
-  searchEvent = new EventEmitter();
   totalRecord = 0;
   constructor(private http: HttpClient, private $http: BeeHttpService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
-    this.http.get<any[]>('https://jsonplaceholder.typicode.com/photos').subscribe(photos => {
-      this.photos = photos;
-      this.photosBuffer = this.photos.slice(0, this.bufferSize);
-    });
-
     this.loadParentModules();
     this.initializeProperties();
 
@@ -65,7 +49,26 @@ export class ModuleParentSelectComponent implements OnInit, OnChanges, OnDestroy
     console.log(`系统RowId:${this.systemRowId}, 模块等级： ${this.moduleLevel}`);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    let systemRowIdChange = changes['systemRowId'];
+    let moduleLevelChange = changes['moduleLevel'];
+
+    if ((systemRowIdChange && !systemRowIdChange.firstChange) ||
+      (moduleLevelChange && !moduleLevelChange.firstChange)) {
+      this.loadParentModules();
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.searchEvent.unsubscribe();
+  }
+
   loadParentModules() {
+    if (this.loading || this.totalRecord <= this.elementState.items?.length) {
+      return;
+    }
+    this.loading = true;
     this.$http.post(this.requestUrl, {
       pageSize: this.bufferSize,
       pageNo: 1,
@@ -91,16 +94,16 @@ export class ModuleParentSelectComponent implements OnInit, OnChanges, OnDestroy
     });
   }
 
-  ngOnDestroy(): void {
-    this.searchEvent.unsubscribe();
-  }
+
   protected initializeProperties(): void {
     this.beeRFC = elementStateSegment(this.formBuilder, this.elementState);
+    this.elementState.bindValue = 'rowId';
+    this.elementState.bindLabel = 'chName';
     this.isRequired = BeeFormTools.checkRequired(this.beeRFC);
   }
 
   onScrollToEnd() {
-    this.fetchMore();
+    this.loadParentModules();
   }
 
   /**
@@ -108,33 +111,12 @@ export class ModuleParentSelectComponent implements OnInit, OnChanges, OnDestroy
    * @param end
    */
   onScroll({ end }) {
-    if (this.loading || this.photos.length <= this.photosBuffer.length) {
-      return;
-    }
 
-    if (end + this.numberOfItemsFromEndBeforeFetchingMore >= this.photosBuffer.length) {
-      this.fetchMore();
+
+    if (end + this.numberOfItemsFromEndBeforeFetchingMore >= this.elementState.items?.length) {
+      this.loadParentModules();
     }
   }
 
-  private fetchMore() {
-    const len = this.photosBuffer.length;
-    const more = this.photos.slice(len, this.bufferSize + len);
-    this.loading = true;
-    // using timeout here to simulate backend API delay
-    setTimeout(() => {
-      this.loading = false;
-      this.photosBuffer = this.photosBuffer.concat(more);
-    }, 200)
-  }
-
-
-  /**
-   * 搜索
-   * @param searchText 值
-   */
-  onSearch =  (searchText: string) => {
-    this.searchEvent.emit(searchText);
-  }
 
 }

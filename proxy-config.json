@@ -8,7 +8,7 @@
     }
   },
   "/admin/*": {
-    "target": "http://localhost:8080/",
+    "target": "http://mmall.bytenote.cn:8765/",
     "logLevel": "debug",
     "changeOrigin": true,
     "pathRewrite":{

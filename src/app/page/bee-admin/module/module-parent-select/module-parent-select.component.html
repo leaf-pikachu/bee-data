@@ -1,28 +1,30 @@
-<label class="form-label">
-  <span *ngIf="isRequired" class="text-danger"><i class="fa fa-asterisk"></i></span>
-  {{elementState.title}}
-</label>
-
+<bee-label [title]="elementState.title" [required]="isRequired"></bee-label>
 <ng-select [items]="elementState.items"
            [virtualScroll]="true"
            [loading]="loading"
-           bindLabel="title"
-           bindValue="thumbnailUrl"
+           [bindLabel]="elementState.bindLabel"
+           [bindValue]="elementState.bindValue"
            (scroll)="onScroll($event)"
            (scrollToEnd)="onScrollToEnd()"
            [placeholder]="this.elementState.placeholder"
            [formControl]="beeRFC"
-           [searchFn]="onSearch"
+           [typeahead]="searchEvent"
            [ngClass]="{
             'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),
             'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)
-          }"
->
-  <ng-template ng-header-tmp>
-    <small class="form-text text-muted">Loaded {{photosBuffer.length}} of {{photos.length}}</small>
+          }">
+
+  <ng-template ng-label-tmp let-item="item">
+    <b ><i style="min-width: 30px;" class="{{item.icon}}"></i></b> {{item.chName}}
   </ng-template>
+
+  <ng-template ng-header-tmp>
+    <small class="form-text text-muted">Loaded {{elementState.items.length}} of {{totalRecord}}</small>
+  </ng-template>
+
   <ng-template ng-option-tmp let-item="item" let-index="index">
-    <b>{{index}}</b> {{item.title}}
+    <b ><i style="min-width: 30px;" class="{{item.icon}}"></i></b>{{item.chName}} <> {{item.enName}}
   </ng-template>
 </ng-select>
-<bee-validate-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-validate-error-msg>
+<bee-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-error-msg>
+

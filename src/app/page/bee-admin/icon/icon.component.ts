@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { BeeService } from '@bee/core/service/bee.service';
 import { BeeHttpService } from '@bee/core/service/bee-http.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { GridSupport } from '@bee/core/config/grid/grid-support';
 
 @Component({
   selector: 'app-icon',
@@ -10,34 +10,34 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
     './icon.component.scss'
   ]
 })
-export class IconComponent implements OnInit {
-  icons: any[];
+export class IconComponent extends GridSupport{
+  @ViewChild('moduleIconTemplate', {static: true})
+  moduleIconTemplate: TemplateRef<any>
 
-  constructor(private beeService: BeeService, private $http: BeeHttpService) {
+  constructor(private beeService: BeeService, $http: BeeHttpService) {
+    super($http, '/admin/module/icons', '');
     this.beeService.pageTitle = '系统Icons';
-
-    this.$http.post('/admin/module/icons', {
-      pageNo: 1,
-      pageSize: 500
-    }, false).subscribe((data: any) => this.icons = data.result);
+    this.gridSupportInstance = this;
   }
 
-  getIconClass(icon) {
-    return `.${icon[0]}.fa-${icon[1]}`;
+  initColumns() {
+    this.columns = [{
+      name: 'Type',
+      prop: 'type',
+      showColumn: true,
+      sortable: true
+
+    }, {
+      name: 'Icon Code',
+      prop: 'code',
+      showColumn: true,
+      sortable: true
+    }, {
+      name: 'Icon',
+      prop: 'code',
+      sortable: false,
+      showColumn: true,
+      cellTemplate: this.moduleIconTemplate
+    }];
   }
-
-  search($event) {
-    $event.pipe(debounceTime(500), distinctUntilChanged());
-    const val = String($event.target.value).replace(/^\s+|\s+$/g, '');
-
-    if (!val) {
-      // this.icons = iconList.slice(0);
-      return;
-    }
-
-  }
-
-  ngOnInit(): void {
-  }
-
 }
