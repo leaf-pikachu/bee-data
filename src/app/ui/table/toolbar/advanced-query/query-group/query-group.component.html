@@ -1,0 +1,55 @@
+<div class="row" [formGroup]="formGroup" (focusin)="focusinType = true" (mouseover)="focusinType = true" (mouseleave)="focusinType = false" (focusout)="focusinType = false">
+  <div class="input-group col-md-12">
+    <div class="input-group-prepend">
+      <label ngbTooltip="连接方式" class="switcher switcher-square">
+        <input type="checkbox" formControlName="prefix" class="switcher-input">
+        <span class="switcher-indicator">
+                        <span class="switcher-yes">且</span>
+                        <span class="switcher-no">或</span>
+                      </span>
+      </label>
+      <span (click)="openModal(groupTemplate)"
+        ngbTooltip="分组查询" class="btn btn-link hide-arrow"> 分组 </span>
+
+      <ng-template #groupTemplate let-c="close" let-d="dismiss">
+        <div class="card" [formGroup]="formGroup" >
+          <div class="card-header with-elements">
+            <span class="card-header-title mr-2">设置分组</span>
+            <div class="card-header-elements">
+              <button class="btn btn-xs btn-outline-primary" type="button" (click)="addCondition()">
+                <span class="ion ion-md-add"></span> 添加条件</button>
+              <button class="btn btn-xs btn-outline-primary" type="button" (click)="addGroupQuery()">
+                <span class="ion ion-md-add"></span> 添加分组</button>
+            </div>
+            <div class="card-header-elements ml-md-auto mr-2">
+              <button type="button" class="close" (click)="d('Cross click')">&times;</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form" formArrayName="children">
+              <div class="form-group col-md-12" *ngFor="let fieldColumn of childFieldColumns.controls;  let i = index">
+                <bee-query-group
+                  [fieldColumn]="fieldColumn"
+                  [canCustomColumns]="canCustomColumns"
+                  (removeGroup)="childFieldColumns.removeAt(i)"
+                  *ngIf="fieldColumn['controls'].groupId.value; else groupConditionTemplate;"></bee-query-group>
+
+                <ng-template #groupConditionTemplate>
+                  <bee-query-condition
+                    [fieldColumn]="fieldColumn"
+                    [canCustomColumns]="canCustomColumns"
+                    (removeCondition)="childFieldColumns.removeAt(i)" ></bee-query-condition>
+                </ng-template>
+              </div>
+<!--              <div class="form-group col-md-12">-->
+<!--                {{childFieldColumns.value | json}}-->
+<!--              </div>-->
+            </div>
+          </div>
+
+        </div>
+      </ng-template>
+    </div>
+    <button type="button" *ngIf="focusinType" ngbTooltip="移除条件" class="text-danger close mr-3" (click)="removeGroup.emit()">&times;</button>
+  </div>
+</div>

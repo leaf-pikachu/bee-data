@@ -1,0 +1,37 @@
+<div class="row" [formGroup]="fieldColumn" (focusin)="focusinType = true" (mouseover)="focusinType = true" (mouseleave)="focusinType = false" (focusout)="focusinType = false">
+  <div class="input-group col-md-4">
+    <div class="input-group-prepend">
+      <label ngbTooltip="连接方式" class="switcher switcher-square">
+        <input type="checkbox" formControlName="prefix" class="switcher-input">
+        <span class="switcher-indicator">
+                        <span class="switcher-yes">且</span>
+                        <span class="switcher-no">或</span>
+                      </span>
+      </label>
+      <div ngbDropdown #fieldDropdown="ngbDropdown">
+        <span ngbDropdownToggle ngbTooltip="过滤字段" class="btn  hide-arrow"> {{fieldName || '过滤字段'}} </span>
+        <div ngbDropdownMenu>
+          <ng-select class="form-group mb-0"
+                     (change)="fieldName = $event?.text ; fieldDropdown.close()"
+                     formControlName="field" [items]="canCustomColumns" bindValue="field" bindLabel="text"></ng-select>
+        </div>
+      </div>
+      <div ngbDropdown #typeDropdown="ngbDropdown">
+        <span ngbDropdownToggle ngbTooltip="过滤类型" class="btn btn-link hide-arrow"> {{conditionTypeName || '表达式'}} </span>
+        <div ngbDropdownMenu>
+          <ng-select class="form-group mb-0"
+                     [closeOnSelect]="true"
+                     [markFirst]="false"
+                     (change)="conditionTypeName = $event?.text; typeDropdown.close()"
+                     formControlName="type" [items]="conditionTypes" bindValue="type" bindLabel="text"></ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-group col-md-5">
+    <input class="form-control" formControlName="value" type="text">
+  </div>
+  <button type="button" *ngIf="focusinType" ngbTooltip="移除条件" class="text-danger close mr-3" (click)="removeCondition.emit()">&times;</button>
+</div>
+
+

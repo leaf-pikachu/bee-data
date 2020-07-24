@@ -7,10 +7,7 @@
           </span>
         <div ngbDropdownMenu>
           <bee-toolbar-table-column [columns]="columns" (showColumnsEvent)="showColumnsEvent.emit($event)"></bee-toolbar-table-column>
-          <div class="dropdown-item">
-            <i class="far fa-list-alt" style="min-width: 25px;"></i>自定义查询
-          </div>
-
+          <bee-toolbar-advanced-query [gridColumns]="columns"></bee-toolbar-advanced-query>
         </div>
       </div>
     </div>
