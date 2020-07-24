@@ -22,27 +22,37 @@ export class ModuleComponent extends GridSupport {
       prop: 'moduleLevel',
       sortable: true,
       showColumn: false,
-      disableChange: true
+      disableChange: true,
+      customQuery: true,
+      type: 'string'
     }, {
       name: '系统名称',
       prop: 'systemRowId',
       sortable: false,
       showColumn: true,
+      customQuery: true,
+      type: 'string'
     }, {
       name: '上级模块',
       prop: 'parentModuleRowId',
       sortable: false,
-      showColumn: true
+      showColumn: true,
+      customQuery: true,
+      type: 'string'
     }, {
       name: '模块英文名称',
       prop: 'enName',
       showColumn: true,
-      sortable: false
+      sortable: false,
+      customQuery: true,
+      type: 'string'
     }, {
       name: '模块中文名称',
       prop: 'chName',
       showColumn: true,
-      sortable: false
+      sortable: false,
+      customQuery: true,
+      type: 'string'
     }, {
       name: 'Icon',
       prop: 'icon',

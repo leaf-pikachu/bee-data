@@ -13,6 +13,7 @@
                    [rows]="gridSupportInstance.loadSetting.page.result"
                    [sorts]="gridSupportInstance.loadSetting.sorts"
                    [sortType]="gridSupportInstance.sortType"
+
                    (sort)="gridSupportInstance.sort($event)">
 
       <ngx-datatable-footer>

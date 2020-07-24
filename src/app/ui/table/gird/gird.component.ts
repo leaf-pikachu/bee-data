@@ -40,19 +40,7 @@ export class GirdComponent implements OnInit {
         showColumn: true,
         disableChange: true
       });
-      // this.gridSupportInstance.columns.forEach(gridTableColumn => this.gridTableColumns.push(gridTableColumn));
 
-      // this.gridTableColumns.push({
-      //   name: '操作',
-      //   canAutoResize: false,
-      //   draggable: false,
-      //   cellTemplate: this.operationTemplate,
-      //   resizeable: false,
-      //   sortable: false,
-      //   width: 130,
-      //   showColumn: true,
-      //   disableChange: true
-      // });
 
       this.gridTableColumns.forEach(gridTableColumn => {
         if (gridTableColumn.showColumn) {

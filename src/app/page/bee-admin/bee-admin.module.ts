@@ -16,6 +16,8 @@ import { IconSelectComponent } from './module/icon-select/icon-select.component'
 import { IconComponent } from './icon/icon.component';
 import { BeeTableModule } from '@bee/ui/table/table.module';
 import { ModuleAedComponent } from './module/module-aed/module-aed.component';
+import { TableComponent } from './table/table.component';
+import { TableAedComponent } from './table/table-aed/table-aed.component';
 
 
 
@@ -26,7 +28,9 @@ import { ModuleAedComponent } from './module/module-aed/module-aed.component';
     ModuleParentSelectComponent,
     IconSelectComponent,
     IconComponent,
-    ModuleAedComponent
+    ModuleAedComponent,
+    TableComponent,
+    TableAedComponent
   ],
   imports: [
     CommonModule,
