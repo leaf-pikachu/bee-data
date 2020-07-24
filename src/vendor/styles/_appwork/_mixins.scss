@@ -856,7 +856,7 @@
   }
 
   @include form-control-validated('.form-control, .custom-select, .form-control-file, .custom-control-input, ng-select', $state) {
-    ~ bee-validate-error-msg .#{$state}-feedback,
+    ~ bee-error-msg .#{$state}-feedback,
     ~ .#{$state}-feedback,
     ~ .#{$state}-tooltip {
       display: block;
