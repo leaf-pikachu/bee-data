@@ -1,0 +1,43 @@
+<div class="dropdown-item"
+     (click)="open(advancedQueryModalTemplate, {windowClass: 'modal-lg animate', backdrop: 'static'})">
+  <i class="fab fa-searchengin toolbar-menu-item"></i>自定义查询
+</div>
+
+<ng-template #advancedQueryModalTemplate let-c="close" let-d="dismiss">
+    <div class="card" [formGroup]="formGroup" >
+      <div class="card-header with-elements">
+        <span class="card-header-title mr-2">自定义查询</span>
+        <div class="card-header-elements">
+          <button class="btn btn-xs btn-outline-primary" type="button" (click)="addCondition()">
+            <span class="ion ion-md-add"></span> 添加条件</button>
+          <button class="btn btn-xs btn-outline-primary" type="button" (click)="addGroupQuery()">
+            <span class="ion ion-md-add"></span> 添加分组</button>
+        </div>
+        <div class="card-header-elements ml-md-auto mr-2">
+          <button type="button" class="close" (click)="d('Cross click')">&times;</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form" formArrayName="fieldColumns">
+          <div class="form-group col-md-12" *ngFor="let fieldColumn of fieldColumns.controls;  let i = index">
+            <bee-query-group
+              [fieldColumn]="fieldColumn"
+              [canCustomColumns]="canCustomColumns"
+              (removeGroup)="fieldColumns.removeAt(i)"
+              *ngIf="fieldColumn['controls'].groupId.value; else groupConditionTemplate;"></bee-query-group>
+
+            <ng-template #groupConditionTemplate>
+              <bee-query-condition
+                [fieldColumn]="fieldColumn"
+                [canCustomColumns]="canCustomColumns"
+                (removeCondition)="fieldColumns.removeAt(i)" ></bee-query-condition>
+            </ng-template>
+          </div>
+<!--          <div class="form-group col-md-12">-->
+<!--            {{fieldColumns.value | json}}-->
+<!--          </div>-->
+        </div>
+      </div>
+
+    </div>
+</ng-template>
