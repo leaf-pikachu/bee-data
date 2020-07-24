@@ -1,0 +1,21 @@
+<form class="card md-4" #form="ngForm" [formGroup]="aeFG" (ngSubmit)="aedSave()" novalidate>
+  <h5 class="card-header">
+    基础表 {{operationType?.desc}}
+  </h5>
+  <div class="card-body">
+    <div class="form-row">
+      <bee-input [beeForm]="form" [elementState]="formElementStates.orderNo" class="form-group col-md-6"></bee-input>
+    </div>
+
+    <div class="form-row">
+      <bee-input [beeForm]="form" [elementState]="formElementStates.enName" class="form-group col-md-6"></bee-input>
+      <bee-input [beeForm]="form" [elementState]="formElementStates.chName" class="form-group col-md-6"></bee-input>
+    </div>
+    <bee-textarea [beeForm]="form" [elementState]="formElementStates.dataDesc" rows="7" class="form-group"></bee-textarea>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i>保存</button>
+    <button type="reset"  class="btn btn-warning" (click)="aedReset()">重置</button>
+    <button type="button" class="btn btn-default" (click)="aedBreak()" >返回</button>
+  </div>
+</form>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-import { NgbDropdownModule, NgbPaginationModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule, NgbPaginationModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ContextMenuModule } from 'ngx-contextmenu';
@@ -25,6 +25,7 @@ import { BeeToolbarModule } from '@bee/ui/table/toolbar/toolbar.module';
     NgbPaginationModule,
     NgbTooltipModule,
     NgbDropdownModule,
+    NgbModalModule,
     SweetAlert2Module,
     ContextMenuModule,
 
